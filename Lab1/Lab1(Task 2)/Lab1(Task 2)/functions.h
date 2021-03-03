@@ -5,9 +5,10 @@
 //  Created by Игорь Аралин on 21.02.21.
 //
 
+#include <stdio.h>
+
 #ifndef functions_h
 #define functions_h
-
 #endif /* functions_h */
 
 extern int operation(int x)
@@ -29,4 +30,3 @@ extern int check(int *a)
     }
     return 0;
 }
-
