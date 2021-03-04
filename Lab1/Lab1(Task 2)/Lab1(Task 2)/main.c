@@ -10,7 +10,6 @@ int main()
     printf("Результат: %d\n", operation(x));
     return 0;
 }
-
 int check(int *a)
 {
     if ((scanf("%d", &*a) != 1) || (*a < 100 || *a > 9999))
@@ -20,6 +19,7 @@ int check(int *a)
     }
     return 0;
 }
+#endif
 
 int operation(int x)
 {
@@ -30,4 +30,3 @@ int operation(int x)
         result = (x / 1000) + (x % 100 / 10) + (x / 100 % 10) + (x % 10);
     return result;
 }
-#endif

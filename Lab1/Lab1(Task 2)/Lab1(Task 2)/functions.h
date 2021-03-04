@@ -5,4 +5,5 @@
 
 extern int operation(int x);
 extern int check(int *a);
+
 #endif
