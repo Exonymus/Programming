@@ -4,10 +4,11 @@
 
 int main()
 {
-    int i;
-    for (i = 100; i < 10000; i++)
+    int i, a;
+    for (i = 100; i < 999; i++)
     {
-        printf("Результат: %d\n", operation(i));
+        a = (i / 100) * (i / 10 % 10) * (i % 10);
+        printf("Результат: %d; Правильный ответ: %d\n", operation(i), a);
     }
     return 0;
 }
