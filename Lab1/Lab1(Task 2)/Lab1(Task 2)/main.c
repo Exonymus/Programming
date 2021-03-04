@@ -1,15 +1,6 @@
-//
-//  main.c
-//  Lab1(Task 2)
-//
-//  Created by Игорь Аралин on 21.02.21.
-//
-
+#ifndef TEST
 #include <stdio.h>
 #include "functions.h"
-
-int operation(int x);
-int check(int *a);
 
 int main()
 {
@@ -19,5 +10,4 @@ int main()
     printf("Результат: %d\n", operation(x));
     return 0;
 }
-
-
+#endif
