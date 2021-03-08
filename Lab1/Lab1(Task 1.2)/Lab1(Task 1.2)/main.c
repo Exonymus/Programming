@@ -1,23 +1,23 @@
 #ifndef TEST
 #include <stdio.h>
+#include <stdlib.h>
 #include "functions.h"
 
 int main()
 {
     int x;
     printf("Введите число X (100..9999): ");
-    if (check(&x)) return 1;
+    check(&x);
     printf("Результат: %d\n", operation(x));
     return 0;
 }
-int check(int *a)
+void check(int *a)
 {
     if ((scanf("%d", &*a) != 1) || (*a < 100 || *a > 9999))
     {
         printf("Ввод не верен\n");
-        return 1;
+        exit(1);
     }
-    return 0;
 }
 #endif
 

@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 
-extern int operation(int x);
+extern float menu(int x, int choice);
 extern void check(int *a);
+extern void ChoiceCheck(int *a);
 
 #endif
