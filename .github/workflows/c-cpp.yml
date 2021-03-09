@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make
+      run: cd make
     - name: make TEST
-      run: make TEST
+      run: cd make TEST
     - name: make Lab1
       run: make ./Lab1
     - name: make Lab1_Test
