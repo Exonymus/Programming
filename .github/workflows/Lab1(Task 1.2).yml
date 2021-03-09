@@ -11,7 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: |
-      cd Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)
-      make Lab1_Test
-      ./Lab1_Test
+    
+    - name: Test
+    - run: cd Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)
+    - run: make Lab1_Test
+    - run: ./Lab1_Test
