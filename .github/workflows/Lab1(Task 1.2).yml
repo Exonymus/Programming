@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Lab1(Task 1.2)
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       run: cd make
     - name: make TEST
       run: cd make TEST
-    - name: make Lab1
-      run: make ./Lab1
-    - name: make Lab1_Test
-      run: make ./Lab1_Test
+    - name: Lab1
+      run: ./Lab1
+    - name: Lab1_Test
+      run: ./Lab1_Test
