@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: cd Lab1/Lab1(Task 1.2)/
+      run: cd Lab1/Lab1_Task 1.2/Lab1_Task 1.2
     - name: make TEST
       run: make TEST
     - name: Lab1
