@@ -1,4 +1,4 @@
-name: Builder
+name: Lab1(Task 1.2)
 
 on:
   push:
@@ -11,10 +11,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Test
-    - run: cd Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)
     - name: make
-    - run:  make Lab1_Test
-    - name: run
-    - run: ./Lab1_Test
+      run: cd Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)/
+    - name: make TEST
+      run: make TEST
+    - name: Lab1
+      run: ./Lab1
+    - name: Lab1_Test
+      run: ./Lab1_Test
