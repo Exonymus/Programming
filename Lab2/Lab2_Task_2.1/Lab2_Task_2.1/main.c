@@ -89,7 +89,7 @@ float menu(int x, int choice)
                menu(x, 0);
                break;
            case 6:
-               printf("Версия программы: 0.2 Автор программы: Аралин И.\n");
+               printf("Версия программы: final. Автор программы: Аралин И.\n");
                menu(x, 0);
                break;
            default:
