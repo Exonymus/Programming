@@ -1,9 +1,7 @@
-name: Lab1(Task 1.2)
+name: Builder
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -13,11 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
-      run: cd (/../Lab1(Task 1.2)/Lab1(Task 1.2))
-    - name: make TEST
-      run: cd Programming/Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)/ make TEST
-    - name: Lab1
-      run: ./Lab1
-    - name: Lab1_Test
-      run: ./Lab1_Test
+    - run: |
+      cd Lab1/Lab1(Task 1.2)/Lab1(Task 1.2)
+      make Lab1_Test
+      ./Lab1_Test
