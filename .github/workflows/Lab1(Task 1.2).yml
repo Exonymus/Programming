@@ -14,5 +14,5 @@ jobs:
     - name: make
       run: |
            cd Lab1/Lab1_Task_1.2/Lab1_Task_1.2
-           make TEST
+           make test
            ./Lab1_Test
