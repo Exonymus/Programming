@@ -15,4 +15,5 @@ jobs:
       run: |
            cd Lab1/Lab1_Task_1.2/Lab1_Task_1.2
            make test
-           cd .. ./Lab1_Test
+           | cd .. 
+           ./Lab1_Test
