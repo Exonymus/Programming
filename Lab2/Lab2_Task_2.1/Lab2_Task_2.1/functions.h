@@ -3,8 +3,14 @@
 
 #include <stdio.h>
 
-extern float menu(int x, int choice);
-extern void check(int *a);
-extern void ChoiceCheck(int *a);
+float menu(int x, int choice);
+void check(int *a);
+void ChoiceCheck(int *a);
+
+float rad(float x);
+float sum(float x);
+float area(float x);
+float height(float x);
+float value(float x);
 
 #endif
