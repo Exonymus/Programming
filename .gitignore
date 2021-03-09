@@ -25,3 +25,7 @@ Lab2/Lab2(Task 2.1)/Lab2(Task 2.1).xcodeproj/project.xcworkspace/contents.xcwork
 .DS_Store
 Lab1/Lab1_Task_1.2/Lab1_Task_1.2.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 Lab1/Lab1_Task_1.2/Lab1_Test
+*.xcworkspacedata
+*.xcbkptlist
+Lab2/Lab2_Task_2.1/Lab2_Test
+Lab2/Lab2_Task_2.1/Lab2
