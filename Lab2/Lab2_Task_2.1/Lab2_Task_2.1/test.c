@@ -10,7 +10,7 @@ int main()
     
     printf("Для ребра = 4\n");
     
-    assert(trunc(sum(i) * 1000) == 24000);
+    assert(trunc((sum(i) * 1000)) == 24000);
     printf("4(1) - Valid\n");
     assert(trunc(area(i) * 1000) == 27712);
     printf("4(2) - Valid\n");
