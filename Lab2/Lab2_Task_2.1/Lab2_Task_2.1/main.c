@@ -38,7 +38,7 @@ void check(int *a)
                 printf("Ввод не верен!\nПовторите ввод: ");
             else
                 valid = 1;
-            if (*a == 0)
+            if (*a <= 0)
             {
                 printf("Ввод не верен!\nПовторите ввод: ");
                 valid = 0;
@@ -46,7 +46,7 @@ void check(int *a)
         }
 }
 
-void ChoiceCheck(int *a)
+void choiceCheck(int *a)
 {
     int valid = 0;
     char inpStr[1024];

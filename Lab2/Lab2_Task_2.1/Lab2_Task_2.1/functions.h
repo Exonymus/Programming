@@ -5,7 +5,7 @@
 
 float menu(int x, int choice);
 void check(int *a);
-void ChoiceCheck(int *a);
+void choiceCheck(int *a);
 
 float rad(float x);
 float sum(float x);
