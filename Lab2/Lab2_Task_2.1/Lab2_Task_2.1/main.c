@@ -6,7 +6,7 @@
 
 int main()
 {
-    int x, choice = 0;
+    int x, choice = -1;
     printf("Введите ребро тетраэдра: ");
     check(&x);
     printf("1 - Рассчитать общую длину всех ребер тетраэдра.\n");
@@ -22,81 +22,96 @@ int main()
 
 void check(int *a)
 {
-    if ((scanf("%d", &*a) != 1) || (*a == 0))
-    {
-        printf("Ввод не верен\n");
-        exit(1);
-    }
+    int valid = 0;
+    char inpStr[1024];
+    char buffer = 0;
+    while(!valid)
+        {
+            buffer = 0;
+            if((!scanf("%1023[^\n]%c",inpStr,&buffer)) || buffer != '\n')
+            {
+                if(printf("Ввод не верен!\nПовторите ввод: "))
+                    getchar();
+            }
+            else
+            if(!sscanf(inpStr,"%d%c",&*a,&buffer) || buffer != '\n')
+                printf("Ввод не верен!\nПовторите ввод: ");
+            else
+                valid = 1;
+            if (*a == 0)
+            {
+                printf("Ввод не верен!\nПовторите ввод: ");
+                valid = 0;
+            }
+        }
 }
 
 void ChoiceCheck(int *a)
 {
-    if ((scanf("%d", &*a) != 1) || (*a < 0) || (*a > 6))
-    {
-        printf("Ввод не верен\n");
-        exit(1);
-    }
+    int valid = 0;
+    char inpStr[1024];
+    char buffer = 0;
+    while(!valid)
+        {
+            buffer = 0;
+            if((!scanf("%1023[^\n]%c",inpStr,&buffer)) || buffer != '\n')
+            {
+                if(printf("Ввод не верен!\nПовторите ввод: "))
+                    getchar();
+            }
+            else
+            if(!sscanf(inpStr,"%d%c",&*a,&buffer) || buffer != '\n')
+                printf("Ввод не верен!\nПовторите ввод: ");
+            else
+            if ((*a < 0) || (*a > 6))
+            {
+                printf("Выбран неверный пункт!\nПовторите ввод: ");
+                valid = 0;
+            }
+            else
+                valid = 1;
+        }
 }
-#endif
 
 float menu(int x, int choice)
 {
     float result;
-    printf("Выберите пункт меню: ");
-#ifndef TEST
-    ChoiceCheck(&choice);
-#endif
-    switch (choice)
-       {
-           case 1:
-               result = sum(x);
-               printf("Результат: %f\n",result);
-#ifdef TEST
-               return result;
-#endif
-               menu(x, 0);
-               break;
-           case 2:
-               result = area(x);
-               printf("Результат: %f\n",result);
-#ifdef TEST
-               return result;
-#endif
-               menu(x, 0);
-               break;
-           case 3:
-               result = value(x);
-               printf("Результат: %f\n",result);
-#ifdef TEST
-               return result;
-#endif
-               menu(x, 0);
-               break;
-           case 4:
-               result = height(x);
-               printf("Результат: %f\n",result);
-#ifdef TEST
-               return result;
-#endif
-               menu(x, 0);
-               break;
-           case 5:
-               result = rad(x);
-               printf("Результат: %f\n",result);
-#ifdef TEST
-               return result;
-#endif
-               menu(x, 0);
-               break;
-           case 6:
-               printf("Версия программы: final. Автор программы: Аралин И.\n");
-               menu(x, 0);
-               break;
-           default:
-               break;
+    while (choice != 0)
+    {
+        printf("Выберите пункт меню: ");
+        ChoiceCheck(&choice);
+        switch (choice)
+            {
+                case 1:
+                    result = sum(x);
+                    printf("Результат: %f\n",result);
+                    break;
+                case 2:
+                    result = area(x);
+                    printf("Результат: %f\n",result);
+                    break;
+                case 3:
+                    result = value(x);
+                    printf("Результат: %f\n",result);
+                    break;
+                case 4:
+                    result = height(x);
+                    printf("Результат: %f\n",result);
+                    break;
+                case 5:
+                    result = rad(x);
+                    printf("Результат: %f\n",result);
+                    break;
+                case 6:
+                    printf("Версия программы: final. Автор программы: Аралин И.\n");
+                    break;
+                default:
+                    break;
+            }
        }
     return 0;
 }
+#endif
 
 float sum(float x)
 {
