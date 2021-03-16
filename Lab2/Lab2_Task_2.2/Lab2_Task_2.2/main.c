@@ -41,13 +41,13 @@ void check(int *a)
     while(!valid)
         {
             buffer = 0;
-            if((!scanf("%1023[^\n]%c",inpStr,&buffer)) || buffer != '\n')
+            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
             {
                 if(printf("Ввод не верен!\nПовторите ввод: "))
                     getchar();
             }
             else
-            if(!sscanf(inpStr,"%d%c",&*a,&buffer) || buffer != '\n')
+            if((sscanf(inpStr,"%d%c",&*a,&buffer) != 1) || buffer != '\n')
                 printf("Ввод не верен!\nПовторите ввод: ");
             else
             if (*a <= 0 || *a > 17)
@@ -68,13 +68,13 @@ void flCheck(float *a)
     while(!valid)
         {
             buffer = 0;
-            if((!scanf("%1023[^\n]%c",inpStr,&buffer)) || buffer != '\n')
+            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
             {
                 if(printf("Ввод не верен!\nПовторите ввод: "))
                     getchar();
             }
             else
-            if(!sscanf(inpStr,"%f%c",&*a,&buffer) || buffer != '\n')
+            if((sscanf(inpStr,"%f%c",&*a,&buffer) != 1) || buffer != '\n')
                 printf("Ввод не верен!\nПовторите ввод: ");
             else
             if (*a <= 0)
