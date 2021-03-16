@@ -1,4 +1,4 @@
-name: Tester(Lab2 Task1)
+name: Tester(Task 2)
 
 on:
   push:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Super-Linter
       uses: github/super-linter@v3.15.3
+    - uses: actions/checkout@v2
     - name: make
       run: |
-           cd Lab2/Lab2_Task_2.1/Lab2_Task_2.1
+           cd Lab2/Lab2_Task_2.2/Lab2_Task_2.2
            make test
     - run: |
-           cd Lab2/Lab2_Task_2.1/
+           cd Lab2/Lab2_Task_2.2/
            ./Lab2_Test
