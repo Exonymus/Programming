@@ -79,7 +79,7 @@ float menu(int x, int choice)
     while (choice != 0)
     {
         printf("Выберите пункт меню: ");
-        ChoiceCheck(&choice);
+        choiceCheck(&choice);
         switch (choice)
             {
                 case 1:
