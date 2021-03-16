@@ -96,6 +96,17 @@ float fact (int a)
         return (a * fact(a - 1));
 }
 
+float factIt(int a)
+{
+    float res = 1;
+    while (a > 1)
+    {
+        res *= a;
+        a--;
+    }
+    return res;
+}
+
 float sum(float x, int n)
 {
     float sinSum = 0;
