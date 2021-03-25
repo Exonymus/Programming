@@ -2,7 +2,7 @@ name: Tester(Lab3)
 
 on:
   push:
-    branches: [ Lab3 ]
+    branches: [ main ]
 
 jobs:
   build:
