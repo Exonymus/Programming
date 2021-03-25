@@ -62,28 +62,28 @@ void check(int *a)
 
 void flCheck(float *a)
 {
-    int valid = 0;
-    char inpStr[1024];
-    char buffer = 0;
-    while(!valid)
+    int velid = 0;
+    char inputStr[1024];
+    char buff = 0;
+    while(!velid)
         {
-            buffer = 0;
-            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
+            buff = 0;
+            if((scanf("%1023[^\n]%c",inputStr,&buff) != 2) || buff != '\n')
             {
                 if(printf("Ввод не верен!\nПовторите ввод: "))
                     getchar();
             }
             else
-            if((sscanf(inpStr,"%f%c",&*a,&buffer) != 1) || buffer != '\n')
+            if((sscanf(inputStr,"%f%c",&*a,&buff) != 1) || buff != '\n')
                 printf("Ввод не верен!\nПовторите ввод: ");
             else
             if (*a <= 0)
             {
                 printf("Ввод не верен!\nПовторите ввод: ");
-                valid = 0;
+                velid = 0;
             }
             else
-                valid = 1;
+                velid = 1;
         }
 }
 #endif
