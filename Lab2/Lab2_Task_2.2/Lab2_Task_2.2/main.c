@@ -63,8 +63,8 @@ void check(int *a)
 void flCheck(float *a)
 {
     int valid = 0;
-    char inpStr[1024];
-    char buffer = 0;
+    char inpStr[1024], buffer = 0;
+    
     while(!valid)
         {
             buffer = 0;
@@ -73,8 +73,7 @@ void flCheck(float *a)
                 if(printf("Ввод не верен!\nПовторите ввод: "))
                     getchar();
             }
-            else
-            if((sscanf(inpStr,"%f%c",&*a,&buffer) != 1) || buffer != '\n')
+            else if((sscanf(inpStr,"%f%c",&*a,&buffer) != 1) || buffer != '\n')
                 printf("Ввод не верен!\nПовторите ввод: ");
             else
             if (*a <= 0)
