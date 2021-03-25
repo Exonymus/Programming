@@ -1,0 +1,20 @@
+name: Tester(Lab3)
+
+on:
+  push:
+    branches: [ Lab3 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: |
+           cd Lab3/Lab3_Task_3.2/Lab3_Task_3.2
+           make test
+    - run: |
+           cd Lab3/Lab3_Task_3.2/
+           ./Lab3_Test
