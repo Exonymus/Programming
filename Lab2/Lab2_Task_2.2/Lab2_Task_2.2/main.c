@@ -7,16 +7,15 @@
 int main()
 {
     int n, ans = 0;
-    float x, eps;
+    int x, eps = 0;
     printf("Введите x: ");
-    flCheck(&x);
+    check(&x);
     x = fmod(x, 6.283);
 
     printf("Введите количество членов разложения[1..17]: ");
     check(&n);
 
     printf("Введите эпсилон: ");
-    flCheck(&eps);
 
     printf("Значение sin(x): %f\n", sinf(x));
     printf("Полученное значение sin(x): %f\n", sum(x,n));
@@ -60,31 +59,6 @@ void check(int *a)
         }
 }
 
-void flCheck(float *a)
-{
-    int valid = 0;
-    char inpStr[1024], buffer = 0;
-    
-    while(!valid)
-        {
-            buffer = 0;
-            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
-            {
-                if(printf("Ввод не верен!\nПовторите ввод: "))
-                    getchar();
-            }
-            else if((sscanf(inpStr,"%f%c",&*a,&buffer) != 1) || buffer != '\n')
-                printf("Ввод не верен!\nПовторите ввод: ");
-            else
-            if (*a <= 0)
-            {
-                printf("Ввод не верен!\nПовторите ввод: ");
-                valid = 0;
-            }
-            else
-                valid = 1;
-        }
-}
 #endif
 
 float fact (int a)
