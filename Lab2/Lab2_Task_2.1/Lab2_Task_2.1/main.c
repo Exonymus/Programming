@@ -46,40 +46,13 @@ void check(int *a)
         }
 }
 
-void choiceCheck(int *a)
-{
-    int valid = 0;
-    char inpStr[1024];
-    char buffer = 0;
-    while(!valid)
-        {
-            buffer = 0;
-            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
-            {
-                if(printf("Ввод не верен!\nПовторите ввод: "))
-                    getchar();
-            }
-            else
-            if((sscanf(inpStr,"%d%c",&*a,&buffer) != 1) || buffer != '\n')
-                printf("Ввод не верен!\nПовторите ввод: ");
-            else
-            if ((*a < 0) || (*a > 6))
-            {
-                printf("Выбран неверный пункт!\nПовторите ввод: ");
-                valid = 0;
-            }
-            else
-                valid = 1;
-        }
-}
-
 float menu(int x, int choice)
 {
     float result;
     while (choice != 0)
     {
         printf("Выберите пункт меню: ");
-        choiceCheck(&choice);
+        check(&choice);
         switch (choice)
             {
                 case 1:
