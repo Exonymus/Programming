@@ -26,8 +26,6 @@ int main()
     printf("Test valid\n");
     assert(change(2, 3, 3, n, field) == 0);
     printf("Test valid\n");
-    assert(field);
-    printf("Test valid\n");
     
     for (i = 0; i < m; i++)
         free(field[i]);

@@ -14,6 +14,8 @@ int main()
     printf("Введите n: ");
     check(&n);
     field = (int**) malloc( m * sizeof(int*));
+    if (field == NULL)
+        exit(1);
     for (i = 0; i < m; i++)
         field[i] = (int*) malloc( n * sizeof(int));
     
