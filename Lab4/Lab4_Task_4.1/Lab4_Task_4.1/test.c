@@ -1,35 +1,58 @@
 #ifdef TEST
-#include <stdio.h>
-#include <stdlib.h>
 #include "functions.h"
 #include <assert.h>
+#include <string.h>
 
 int main()
 {
-    int m = 10, n = 10, i, k;
-    int** field = (int**) malloc( m * sizeof(int*));
-    for (i = 0; i < m; i++)
-        field[i] = (int*) malloc( n * sizeof(int));
+    int* length, * path;
+    char** text;
+    int n = 5, i;
     
-    for (i = 0; i < m; i++)
-        for (k = 0; k < n; k++)
-                field[i][k] = 1;
-    field[m - 1][0] = 0;
+    length = (int*) malloc( n * sizeof(int));
+    assert(length != NULL);
     
-    assert(change(1, 9, 0, n, field) == 1);
-    printf("Test valid\n");
-    assert(change(2, 5, 5, n, field) == 0);
-    printf("Test valid\n");
-    assert(change(2, 9, 0, n, field) == 2);
-    printf("Test valid\n");
-    assert(change(1, 8, 8, n, field) == 0);
-    printf("Test valid\n");
-    assert(change(2, 3, 3, n, field) == 0);
-    printf("Test valid\n");
+    path = (int*) malloc( n * sizeof(int));
+    assert(path != NULL);
     
-    for (i = 0; i < m; i++)
-        free(field[i]);
-    free(field);
+    text = (char**) malloc( n * sizeof(char*));
+    assert(text != NULL);
+    memset(text,0,1);
+    for (i = 0; i < n; i++)
+    {
+        text[i] = (char*) malloc( 9 * sizeof(char));
+        assert(text[i] != NULL);
+    }
+    
+    strcpy(text[0], "test");
+    strcpy(text[1], "check");
+    strcpy(text[2], "assert");
+    strcpy(text[3], "kia");
+    strcpy(text[4], "tic");
+    length[0] = 3;
+    length[1] = 4;
+    length[2] = 5;
+    length[3] = 2;
+    length[4] = 2;
+    assert(sort(text, 5, length, path) != 0);
+    printf("Test 1 - Success\n");
+    length[2] = 3;
+    strcpy(text[2], "none");
+    assert(sort(text, 5, length, path) == 0);
+    printf("Test 2 - Success\n");
+    strcpy(text[2], "ant");
+    length[2] = 2;
+    assert(sort(text, 5, length, path) != 0);
+    printf("Test 3 - Success\n");
+    length[0] = 2;
+    assert(sort(text, 5, length, path) == 0);
+    printf("Test 4 - Success\n");
+    
+    for (i = 0; i < n; i++)
+        free(text[i]);
+    free(path);
+    free(length);
+    free(text);
     return 0;
 }
 #endif

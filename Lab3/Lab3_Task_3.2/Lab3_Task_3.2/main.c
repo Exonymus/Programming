@@ -17,8 +17,11 @@ int main()
     if (field == NULL)
         exit(1);
     for (i = 0; i < m; i++)
+    {
         field[i] = (int*) malloc( n * sizeof(int));
-    
+        if (field[i] == NULL)
+            exit(1);
+    }
     for (i = 0; i < m; i++)
         for (k = 0; k < n; k++)
                 field[i][k] = 1;

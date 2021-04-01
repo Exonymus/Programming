@@ -8,8 +8,13 @@ int main()
 {
     int m = 10, n = 10, i, k;
     int** field = (int**) malloc( m * sizeof(int*));
+    assert(field);
+    printf("Test valid\n");
     for (i = 0; i < m; i++)
+    {
         field[i] = (int*) malloc( n * sizeof(int));
+        assert(field[i]);
+    }
     
     for (i = 0; i < m; i++)
         for (k = 0; k < n; k++)
@@ -26,8 +31,7 @@ int main()
     printf("Test valid\n");
     assert(change(2, 3, 3, n, field) == 0);
     printf("Test valid\n");
-    assert(field);
-    printf("Test valid\n");
+   
     
     for (i = 0; i < m; i++)
         free(field[i]);
