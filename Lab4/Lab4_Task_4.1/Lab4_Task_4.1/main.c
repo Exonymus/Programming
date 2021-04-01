@@ -39,7 +39,7 @@ int main()
 
     if (sort(text, n, length, path) == 1)
     {
-        if (text[0][length[0]] == text[1][0])
+        if (text[path[0]][length[path[0]]] == text[path[1]][0])
             for (i = 0; i < n; i++)
                 printf("%s ", text[path[i]]);
         else
