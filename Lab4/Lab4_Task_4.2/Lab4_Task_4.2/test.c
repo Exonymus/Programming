@@ -10,7 +10,7 @@ int main()
     
     text = (char**) malloc( amount * sizeof(char*));
     assert(text != NULL);
-    memset(text,0,1);
+    memset(text, 0, sizeof(*text));
     for (i = 0; i < amount; i++)
     {
         text[i] = (char*) malloc( 15 * sizeof(char));
@@ -38,7 +38,7 @@ int main()
     assert(text[0][0] == '\0');
     printf("Test 3 - Success\n");
     
-    for (i = 0; i < amount; i++)
+    for (i = 0; i < 5; i++)
         free(text[i]);
     free(text);
     return 0;

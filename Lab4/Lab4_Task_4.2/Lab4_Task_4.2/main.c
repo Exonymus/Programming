@@ -54,7 +54,8 @@ int main()
     for (i = 0; i < amount; i++)
         if (text[i][0] != '\0')
             printf("%s\n", text[i]);
-    for (i = 0; i < 116; i++)
+    
+    for (i = 0; i < 512; i++)
         free(text[i]);
     free(text);
     fclose(fin);
@@ -62,17 +63,13 @@ int main()
 }
 #endif
 
-void edit(char ** text, int amount)
+void edit(char** text, int amount)
 {
     int sum1 = 0, sum2 = 0, i, j, k;
-    char** temp;
+    char* temp;
     
-    temp = (char**) malloc( 1 * sizeof(char));
+    temp = (char*) malloc( 15 * sizeof(char));
     if (temp == NULL)
-        exit(1);
-    
-    temp[0] = (char*) malloc( 15 * sizeof(char));
-    if (temp[0] == NULL)
         exit(1);
     
     for (i = 0; i < amount; i++)
@@ -100,12 +97,10 @@ void edit(char ** text, int amount)
         for (j = 0; j < amount - i; j++)
             if (text[j][0] > text[j + 1][0])
             {
-                temp[0] = text[j];
+                temp = text[j];
                 text[j] = text[j + 1];
-                text[j + 1] = temp[0];
+                text[j + 1] = temp;
             }
     }
-    
-    free(temp[0]);
-    free(temp);
+//    free(temp);
 }

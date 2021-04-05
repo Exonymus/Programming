@@ -9,15 +9,15 @@ int main()
     char** text;
     int n = 5, i;
     
-    length = (int*) malloc( n * sizeof(int));
+    length = (int*) malloc(n * sizeof(int));
     assert(length != NULL);
     
-    path = (int*) malloc( n * sizeof(int));
+    path = (int*) malloc(n * sizeof(int));
     assert(path != NULL);
     
-    text = (char**) malloc( n * sizeof(char*));
+    text = (char**) malloc(n * sizeof(char*));
     assert(text != NULL);
-    memset(text,0,1);
+    memset(text, 0, sizeof(*text));
     for (i = 0; i < n; i++)
     {
         text[i] = (char*) malloc( 9 * sizeof(char));
