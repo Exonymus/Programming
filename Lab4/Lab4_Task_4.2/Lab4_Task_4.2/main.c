@@ -94,7 +94,7 @@ void edit(char** text, int amount)
         sum1 = 0;
     }
     
-    for (i = 0; i < amount; ++i)
+    for (i = 1; i < amount; ++i)
     {
         for (j = 0; j < amount - i; j++)
             if (text[j][0] > text[j + 1][0])
@@ -105,7 +105,7 @@ void edit(char** text, int amount)
             }
     }
     
-    for (i = 0; i < amount; ++i)
+    for (i = 1; i < amount; ++i)
     {
         for (j = 0; j < amount - i; j++)
             if (text[j][0] == text[j + 1][0])
