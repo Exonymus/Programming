@@ -13,16 +13,12 @@ int main()
         return 1;
     }
     
-    text = (char**) malloc( 512 * sizeof(char*));
+    text = (char**) malloc(1 * sizeof(char*));
     if (text == NULL)
         exit(1);
-    
-    for (i = 0; i < 256; i++)
-    {
-        text[i] = (char*) malloc( 15 * sizeof(char));
-        if (text[i] == NULL)
+    text[0] = (char*) malloc(15 * sizeof(char));
+    if (text[i] == NULL)
             exit(1);
-    }
     
     i = 0;
     while(1)
@@ -45,6 +41,12 @@ int main()
             else
                 continue;
             i++;
+            text = (char**) realloc(text, (i + 1) * sizeof(char*));
+            if (text == NULL)
+                exit(1);
+            text[i] = (char*) malloc( 15 * sizeof(char));
+            if (text[i] == NULL)
+                exit(1);
             j = 0;
         }
     }
@@ -55,7 +57,7 @@ int main()
         if (text[i][0] != '\0')
             printf("%s\n", text[i]);
     
-    for (i = 0; i < 512; i++)
+    for (i = 0; i < amount + 1; i++)
         free(text[i]);
     free(text);
     fclose(fin);
@@ -92,15 +94,45 @@ void edit(char** text, int amount)
         sum1 = 0;
     }
     
-    for (i = 1; i < amount; ++i)
+    for (i = 0; i < amount; ++i)
     {
         for (j = 0; j < amount - i; j++)
             if (text[j][0] > text[j + 1][0])
             {
-                temp = text[j];
-                text[j] = text[j + 1];
-                text[j + 1] = temp;
+                wordCopy(temp, text[j]);
+                wordCopy(text[j], text[j + 1]);
+                wordCopy(text[j + 1], temp);
             }
     }
-//    free(temp);
+    
+    for (i = 0; i < amount; ++i)
+    {
+        for (j = 0; j < amount - i; j++)
+            if (text[j][0] == text[j + 1][0])
+            {
+                if (text[j][1] == text[j + 1][1])
+                {
+                    if (text[j][2] > text[j + 1][2])
+                    {
+                        wordCopy(temp, text[j]);
+                        wordCopy(text[j], text[j + 1]);
+                        wordCopy(text[j + 1], temp);
+                    }
+                }
+                else if (text[j][1] > text[j + 1][1])
+                {
+                    wordCopy(temp, text[j]);
+                    wordCopy(text[j], text[j + 1]);
+                    wordCopy(text[j + 1], temp);
+                }
+            }
+    }
+    free(temp);
+}
+
+void wordCopy(char* text, char*word)
+{
+    int i;
+    for (i = 0; i < 15; i++)
+        text[i] = word[i];
 }

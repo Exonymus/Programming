@@ -5,7 +5,7 @@
 
 int main()
 {
-    char** text;
+    char** text = NULL;
     int amount = 5, i;
     
     text = (char**) malloc( amount * sizeof(char*));

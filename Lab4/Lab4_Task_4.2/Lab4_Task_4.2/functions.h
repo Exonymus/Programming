@@ -6,5 +6,6 @@
 #include <stdlib.h>
 
 void edit(char ** text, int amount);
+void wordCopy(char* text, char*word);
 
 #endif
