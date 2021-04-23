@@ -1,0 +1,20 @@
+name: Tester(Lab5 Task 1)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: |
+           cd Lab5/Lab5_Task_5.1/Lab4_Task_5.1
+           make test
+    - run: |
+           cd Lab5/Lab5_Task_5.1/
+           ./Lab5_Test
