@@ -13,21 +13,21 @@ int main()
     q.push(6);
     
     reverse(6, q);
-    assert(q.pop() == 6);
+    assert(q.pop() == 1);
     cout << "Test 1 - Valid\n";
     
     reverse(5, q);
-    assert(q.pop() == 5);
+    assert(q.pop() == 6);
     cout << "Test 2 - Valid\n";
     
     reverse(4, q);
-    assert(q.pop() != 2);
+    assert(q.pop() != 4);
     cout << "Test 3 - Valid\n";
     
     q.push(0);
     q.push(9);
     reverse(5, q);
-    assert(q.pop() == 9);
+    assert(q.pop() == 5);
     cout << "Test 4 - Valid\n";
     
     assert(q.isEmpty() == false);

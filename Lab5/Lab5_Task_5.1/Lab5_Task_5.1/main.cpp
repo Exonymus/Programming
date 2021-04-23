@@ -22,7 +22,7 @@ int main()
 
     reverse(n, q);
     
-    cout << "Новая очередь: ";
+    cout << "Обратная очередь: ";
     for (int i = 0; i < n; i++)
     {
         cout << q.pop() << " ";
@@ -60,7 +60,7 @@ void reverse(int n, Queue &q)
     if (arr == NULL)
         exit(1);
     
-    for (int i = (n - 1); i >= 0; i--)
+    for (int i = 0; i < n; i++)
     {
         arr[i] = q.pop();
     }
