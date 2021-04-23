@@ -5,7 +5,7 @@ int main()
     int i = 0, j = 0, amount = 0;
     char** text;
     char n;
-    FILE* fin = fopen("/Users/exonymus/Programming/Lab4/Lab4_Task_4.2/Lab4_Task_4.2/Text.txt", "r");
+    FILE* fin = fopen("Text.txt", "r");
     
     if (fin == NULL)
     {
