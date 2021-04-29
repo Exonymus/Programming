@@ -40,7 +40,8 @@ int Queue :: pop()
     }
     
     tail = previous;
-    previous->next = NULL;
+    if (previous)
+        previous->next = NULL;
     number = current->field;
     return number;
 }

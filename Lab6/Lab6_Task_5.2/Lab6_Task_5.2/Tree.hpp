@@ -7,8 +7,8 @@ struct tnode
 {
     int field;
     int depth;
-    struct tnode *left;
-    struct tnode *right;
+    tnode *left;
+    tnode *right;
 };
 
 void treePrint(tnode *tree);
