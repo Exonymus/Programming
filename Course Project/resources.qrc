@@ -1,0 +1,58 @@
+<RCC>
+    <qresource prefix="/StartMenu">
+        <file>Assets/bg_cat.gif</file>
+        <file>Assets/bg_cat_2.gif</file>
+        <file>Assets/bg_clips.gif</file>
+        <file>Assets/bg_rev.gif</file>
+        <file>Assets/bg.png</file>
+        <file>Assets/app_icon.png</file>
+        <file>Assets/start_bt_hover.png</file>
+        <file>Assets/start_bt_pressed.png</file>
+        <file>Assets/start_bt.png</file>
+        <file>Assets/back_hover.png</file>
+        <file>Assets/back_pressed.png</file>
+        <file>Assets/back.png</file>
+        <file>Assets/field.png</file>
+    </qresource>
+    <qresource prefix="/GameChoice">
+        <file>Assets/money_hover.png</file>
+        <file>Assets/money_pressed.png</file>
+        <file>Assets/money.png</file>
+        <file>Assets/safe_hover.png</file>
+        <file>Assets/safe_pressed.png</file>
+        <file>Assets/safe.png</file>
+        <file>Assets/cups_hover.png</file>
+        <file>Assets/cups_pressed.png</file>
+        <file>Assets/cups.png</file>
+    </qresource>
+    <qresource prefix="/Money">
+        <file>Assets/cd_enter_hover.png</file>
+        <file>Assets/cd_enter_pressed.png</file>
+        <file>Assets/cd_enter.png</file>
+        <file>Assets/cd_gen_hover.png</file>
+        <file>Assets/cd_gen_pressed.png</file>
+        <file>Assets/cd_gen.png</file>
+        <file>Assets/console.jpg</file>
+        <file>Assets/timer.gif</file>
+        <file>Assets/cd_field.jpg</file>
+    </qresource>
+    <qresource prefix="/Safe">
+        <file>Assets/safe_game.png</file>
+        <file>Assets/bet350.png</file>
+        <file>Assets/tries3.png</file>
+        <file>Assets/tries1.png</file>
+        <file>Assets/tries2.png</file>
+    </qresource>
+    <qresource prefix="/Cups">
+        <file>Assets/bet150.png</file>
+        <file>Assets/cups_appear_1.gif</file>
+        <file>Assets/cups_appear_2.gif</file>
+        <file>Assets/choice_hover.png</file>
+        <file>Assets/choice.png</file>
+        <file>Assets/make_choice.png</file>
+        <file>Assets/loss_left.gif</file>
+        <file>Assets/loss_right.gif</file>
+        <file>Assets/victory_left.gif</file>
+        <file>Assets/victory_right.gif</file>
+    </qresource>
+</RCC>
