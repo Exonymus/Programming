@@ -47,6 +47,7 @@ class GoodsList
         void delHead();
         void sortList();
         void swap(ShopGoods &a, ShopGoods &b);
+        int fwrite();
 };
 
 struct Deal
@@ -80,6 +81,7 @@ class DcardsList
         void delHead();
         void sortList();
         void swap(DiscountCard &a, DiscountCard &b);
+        int fwrite();
 };
 
 class DealList
@@ -97,6 +99,7 @@ class DealList
         void delHead();
         void sortList();
         void swap(Deal &a, Deal &b);
+        int fwrite();
 };
 
 #endif

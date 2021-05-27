@@ -238,6 +238,13 @@ int main()
         check(&choice, 0, 5);
     }
     
+    if (GoodsBase.fwrite())
+        return 1;
+    if (DCardsBase.fwrite())
+        return 1;
+    if (DealBase.fwrite())
+        return 1;
+    
     return 0;
 }
 
@@ -389,13 +396,13 @@ int baseCheck(GoodsList base, DcardsList cardBase)
 
 int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
 {
-    ifstream historyin("shopHistory.txt", ios_base::out);
+    ifstream historyin("shopHistory.txt", ios_base::in);
     if (!historyin.is_open())
         return 1;
-    ifstream cardsin("cardBase.txt", ios_base::out);
+    ifstream cardsin("cardBase.txt", ios_base::in);
     if (!cardsin.is_open())
         return 1;
-    ifstream productsin("productBase.txt", ios_base::out);
+    ifstream productsin("productBase.txt", ios_base::in);
     if (!productsin.is_open())
         return 1;
     
@@ -467,6 +474,7 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
         
         DealBase.add(d);
     }
+    historyin.close();
     
     return 0;
 }

@@ -11,6 +11,33 @@ GoodsList::GoodsList()
    head = tail = NULL;
 }
 
+int GoodsList::fwrite()
+{
+    if (head)
+    {
+        ofstream productsin("productBase.txt", ios_base::out);
+        
+        if (!productsin.is_open())
+            return 1;
+        
+        ShopGoods *buf = head;
+        while (buf)
+        {
+            productsin << buf->Name
+            << " " << buf->Price
+            << " " << buf->GoodBought
+            << " " << buf->BarCode;
+            
+            productsin << "\n";
+            buf = buf->Next;
+        }
+        productsin.close();
+    }
+    else
+        return 1;
+    return 0;
+}
+
 void GoodsList::add(ShopGoods good)
 {
     ShopGoods *buf  = new ShopGoods;
@@ -256,6 +283,31 @@ void DcardsList::printBase() const
     }
     else
         cout << "Ошибка. База пуста.\n";
+}
+
+int DcardsList::fwrite()
+{
+    if (head)
+    {
+        ofstream cardsin("cardBase.txt", ios_base::out);
+        
+        if (!cardsin.is_open())
+            return 1;
+        
+        DiscountCard *buf = head;
+        while (buf)
+        {
+            cardsin << buf->DiscountCardCode
+            << " " << buf->Discount;
+            
+            cardsin << "\n";
+            buf = buf->Next;
+        }
+        cardsin.close();
+    }
+    else
+        return 1;
+    return 0;
 }
 
 void DcardsList::delHead()
@@ -532,6 +584,59 @@ void DealList::search(string date)
     else
         cout << "Ошибка. База пуста.\n";
 }
+
+int DealList::fwrite()
+{
+    if (head)
+    {
+        ofstream historyin("shopHistory.txt", ios_base::out);
+        
+        if (!historyin.is_open())
+            return 1;
+        
+        Deal *buf = head;
+        while (buf)
+        {
+            historyin << buf->Date.Day
+                      << " " << buf->Date.Month
+                      << buf->Date.Day
+                      << " " << buf->Date.Year
+                      << buf->Date.Day
+                      << " ";
+            
+            ShopGoods *buf2 = buf->ListOfBuyedGoods->getHead();
+            while (buf2)
+            {
+                historyin << buf2->BarCode
+                << " " << buf2->GoodBought;
+                
+                if (!buf->Next)
+                    historyin << " # ";
+                else
+                    historyin << " . ";
+                buf2 = buf2->Next;
+            }
+            
+            historyin << buf->Summ
+            << " " << buf->IfUsedDiscount << " ";
+            
+            if (buf->IfUsedDiscount)
+                historyin << buf->UsedDiscountCard.DiscountCardCode << " ";
+            historyin << buf->IfUsedCreditCard << " ";
+            
+            if (buf->IfUsedCreditCard)
+                historyin << buf->CreditCardCode;
+            historyin << "\n";
+            
+            buf = buf->Next;
+        }
+        historyin.close();
+    }
+    else
+        return 1;
+    return 0;
+}
+
 
 void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
 {
