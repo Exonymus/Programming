@@ -238,10 +238,6 @@ int main()
         check(&choice, 0, 5);
     }
     
-    DealBase.freemem();
-    GoodsBase.freemem();
-    DCardsBase.freemem();
-    
     return 0;
 }
 
@@ -387,30 +383,30 @@ int baseCheck(GoodsList base, DcardsList cardBase)
             printMenu(0);
         return 1;
     }
-    base.freemem();
-    cardBase.freemem();
+
     return 0;
 }
 
 int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
 {
-    ofstream historyin("shopHistory.txt", ios_base::app);
+    ifstream historyin("shopHistory.txt", ios_base::out);
     if (!historyin.is_open())
         return 1;
-    ifstream cardsid("cardBase.txt", ios_base::in);
-    if (!cardsid.is_open())
+    ifstream cardsin("cardBase.txt", ios_base::out);
+    if (!cardsin.is_open())
         return 1;
-    ifstream productsin("productBase.txt", ios_base::in);
+    ifstream productsin("productBase.txt", ios_base::out);
     if (!productsin.is_open())
         return 1;
     
-    while(!cardsid.eof())
+    while(!cardsin.eof())
     {
         DiscountCard temp;
-        cardsid >> temp.DiscountCardCode;
-        cardsid >> temp.Discount;
+        cardsin >> temp.DiscountCardCode;
+        cardsin >> temp.Discount;
         DCardsBase.add(temp);
     }
+    cardsin.close();
     
     while(!productsin.eof())
     {
@@ -421,8 +417,57 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
         productsin >> temp.BarCode;
         GoodsBase.add(temp);
     }
+    productsin.close();
+
+    while (!historyin.eof())
+    {
+        Deal d;
+        d.GoodsVariety = 0;
+        string temps = "";
+        
+        historyin >> d.Date.Day;
+        historyin >> d.Date.Month;
+        historyin >> d.Date.Year;
+        
+        GoodsList *goods = new GoodsList;
+        
+        while(temps != "#")
+        {
+            ShopGoods temp;
+            string barcode;
+            
+            historyin >> barcode;
+            temp.BarCode = barcode;
+            
+            GoodsBase.setGood(temp);
+            historyin >> temp.GoodBought;
+            goods->add(temp);
+            d.GoodsVariety++;
+            
+            historyin >> temps;
+        }
+        
+        historyin >> d.Summ;
+        d.ListOfBuyedGoods = goods;
+        
+        historyin >> d.IfUsedDiscount;
+        if (d.IfUsedDiscount)
+        {
+            double disc;
+            string code;
+            historyin >> code;
+            DCardsBase.search(code, disc);
+            d.UsedDiscountCard.DiscountCardCode = code;
+            d.UsedDiscountCard.Discount = disc;
+        }
+        
+        historyin >> d.IfUsedCreditCard;
+        if (d.IfUsedCreditCard)
+            historyin >> d.CreditCardCode;
+        
+        DealBase.add(d);
+    }
     
-    ifstream fin("/Users/exonymus/Projects/Program8/Program8.2/Program8.2/ATS_Base.txt");
     return 0;
 }
 

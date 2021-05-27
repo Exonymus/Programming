@@ -11,7 +11,7 @@ struct ShopGoods
     string BarCode;
     long Price;
     string Name;
-    long GoodBought;
+    int GoodBought;
     ShopGoods *Next, *Prev;
 };
 
@@ -24,9 +24,9 @@ struct DiscountCard
 
 struct DealDate
 {
-    char Year;
-    char Month;
-    char Day;
+    short Year;
+    short Month;
+    short Day;
 };
 
 class GoodsList
@@ -47,7 +47,6 @@ class GoodsList
         void delHead();
         void sortList();
         void swap(ShopGoods &a, ShopGoods &b);
-        void freemem();
 };
 
 struct Deal
@@ -81,7 +80,6 @@ class DcardsList
         void delHead();
         void sortList();
         void swap(DiscountCard &a, DiscountCard &b);
-        void freemem();
 };
 
 class DealList
@@ -99,7 +97,6 @@ class DealList
         void delHead();
         void sortList();
         void swap(Deal &a, Deal &b);
-        void freemem();
 };
 
 #endif

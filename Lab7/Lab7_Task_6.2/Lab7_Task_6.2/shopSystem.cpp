@@ -11,57 +11,6 @@ GoodsList::GoodsList()
    head = tail = NULL;
 }
 
-void GoodsList::freemem()
-{
-    if (head)
-    {
-        ShopGoods *buf = head;
-        while (buf)
-        {
-            ShopGoods *temp = buf->Next;
-            free(buf);
-            buf = temp;
-            free(temp);
-        }
-    }
-    else
-        return;
-}
-
-void DcardsList::freemem()
-{
-    if (head)
-    {
-        DiscountCard *buf = head;
-        while (buf)
-        {
-            DiscountCard *temp = buf->Next;
-            free(buf);
-            buf = temp;
-            free(temp);
-        }
-    }
-    else
-        return;
-}
-
-void DealList::freemem()
-{
-    if (head)
-    {
-        Deal *buf = head;
-        while (buf)
-        {
-            Deal *temp = buf->Next;
-            free(buf);
-            buf = temp;
-            free(temp);
-        }
-    }
-    else
-        return;
-}
-
 void GoodsList::add(ShopGoods good)
 {
     ShopGoods *buf  = new ShopGoods;
@@ -449,24 +398,30 @@ void DealList::printBase() const
     {
         int i = 0;
         Deal *buf = head;
-        cout << "\t\tИстория покупок:\n";
+        cout << "\t\tИстория покупок:";
         while (buf)
         {
             i++;
-            cout << i << ") Дата покупки: " << buf->completeDate()
+            cout << "\n" << i << ") Дата покупки: " << buf->completeDate()
                  << "\nКол-во товаров: " << buf->GoodsVariety
                  << "\nСумма чека: " << buf->Summ
                  << "\n\tСписок покупок: ";
             buf->ListOfBuyedGoods->printBase();
             
             if (buf->IfUsedDiscount)
-                cout << "Номер скидочной карты: " << buf->UsedDiscountCard.DiscountCardCode;
+                cout << "Номер скидочной карты: " << buf->UsedDiscountCard.DiscountCardCode
+                     << "\tОбъем скидки: " << buf->UsedDiscountCard.Discount << "%" << endl;
+            else
+                cout << "Скидочная карта не использовалась.\n";
+            
             if (buf->IfUsedCreditCard)
                 cout << "Номер кредитной карты: " << buf->CreditCardCode;
+            else
+                cout << "Кредитная карта не использовалась.";
             
-            
-            cout << "0";
             buf = buf->Next;
+            if (buf)
+                cout << endl;
         }
         cout << endl;
     }
@@ -544,14 +499,29 @@ void DealList::search(string date)
     {
         Deal *buf = head;
         int amount = 0;
-        cout << "\t\tРезультат поиска:\n";
+        cout << "\t\tРезультат поиска:";
         while (buf)
         {
             if (buf->completeDate() == date)
             {
                 amount++;
-                //Вывод
-                cout << "0";
+                cout << "\n" << amount << ") Дата покупки: " << buf->completeDate()
+                     << "\nКол-во товаров: " << buf->GoodsVariety
+                     << "\nСумма чека: " << buf->Summ
+                     << "\n\tСписок покупок: ";
+                buf->ListOfBuyedGoods->printBase();
+                
+                if (buf->IfUsedDiscount)
+                    cout << "Номер скидочной карты: " << buf->UsedDiscountCard.DiscountCardCode
+                         << "\tОбъем скидки: " << buf->UsedDiscountCard.Discount << "%" << endl;
+                else
+                    cout << "Скидочная карта не использовалась.\n";
+                
+                if (buf->IfUsedCreditCard)
+                    cout << "Номер кредитной карты: " << buf->CreditCardCode;
+                else
+                    cout << "Кредитная карта не использовалась.";
+                    cout << endl;
             }
             
             buf = buf->Next;
@@ -568,6 +538,7 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
     dateMark(d.Date);
     GoodsList *goods = new GoodsList;
     double rawSumm = 0;
+    d.GoodsVariety = 0;
     
     cout << "\t\tВвод продуктов:\n";
     while(true)
@@ -580,7 +551,6 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
         base.search(barcode, false);
         temp.BarCode = barcode;
         base.setGood(temp);
-        goods->add(temp);
         
         cout << "Введите кол-во продукта: ";
         cin >> amount;
@@ -588,6 +558,7 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
         temp.GoodBought = amount;
         d.GoodsVariety++;
         rawSumm += base.getPrice(barcode) * amount;
+        goods->add(temp);
         
         cout << "Чтобы завершить ввод продуктов введите 0, чтобы продолжить - 1: ";
         check(&checked, 0, 1);
@@ -602,31 +573,42 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
     
     int code;
     double disc;
-    cout << "Если Вы используете скидочную карту, введите ее номер(если нет введите 0): ";
+    cout << "Если Вы используете скидочную карту, введите ее номер(если нет введите 0):\n";
     check(&code, 0, 99999999);
+    
     if ((code && code < 10000000) || code < 0)
     {
         cout << "Ввод не верен! Повторите ввод: ";
         check(&code, 10000000, 99999999);
-        d.IfUsedDiscount = true;
-        cardBase.search(to_string(code), disc);
-        d.UsedDiscountCard.DiscountCardCode = code;
-        d.UsedDiscountCard.Discount = disc;
-        rawSumm = rawSumm * (100 - disc) / 100;
+        
     }
     else
         d.IfUsedDiscount = false;
+    
+    if (code)
+    {
+        d.IfUsedDiscount = true;
+        cardBase.search(to_string(code), disc);
+        d.UsedDiscountCard.DiscountCardCode = to_string(code);
+        d.UsedDiscountCard.Discount = disc;
+        rawSumm = rawSumm * (100 - disc) / 100;
+    }
+    
     d.Summ = rawSumm;
     
-    cout << "Если Вы используете кредитную карту, введите ее номер(если нет введите 0): ";
+    cout << "Если Вы используете кредитную карту, введите ее номер(если нет введите 0):\n";
     check(&code, 0, 99999999);
     if ((code && code < 10000000) || code < 0)
     {
         cout << "Ввод не верен! Повторите ввод: ";
         check(&code, 10000000, 99999999);
-        d.CreditCardCode = code;
-        d.IfUsedCreditCard = true;
     }
     else
         d.IfUsedCreditCard = false;
+    
+    if (code)
+    {
+        d.CreditCardCode = to_string(code);
+        d.IfUsedCreditCard = true;
+    }
 }
