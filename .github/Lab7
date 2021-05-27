@@ -1,0 +1,14 @@
+name: App Testing and Code Coverage
+on: push
+
+jobs:
+  Testing_the_app:
+    name: "App testing"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ls
+      - run: make testGit
+      - run: make runtestGit
+      - run: make checkcov
+      - run: bash <(curl -s https://codecov.io/bash)
