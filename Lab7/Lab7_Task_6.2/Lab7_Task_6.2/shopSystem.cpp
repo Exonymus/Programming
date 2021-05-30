@@ -3,7 +3,10 @@
 
 string Deal::completeDate()
 {
-    return to_string(Date.Day) + '.' + to_string(Date.Month) + '.' + to_string(Date.Year);
+    if (Date.Day && Date.Month && Date.Year)
+        return to_string(Date.Day) + '.' + to_string(Date.Month) + '.' + to_string(Date.Year);
+    else
+        return "ERROR";
 }
 
 GoodsList::GoodsList()

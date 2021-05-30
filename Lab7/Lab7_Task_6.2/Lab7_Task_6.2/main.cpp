@@ -24,7 +24,14 @@ int main()
                 while (true)
                 {
                     if (baseCheck(GoodsBase, DCardsBase))
+                    {
+                        cout << "Ошибка! База товаров или база карт скидок пуста!\n";
+                        cout << "0 -> Вернуться в главное меню.\n";
+                        check(&choice_1, 0, 0);
+                        if (!choice_1)
+                            printMenu(0);
                         break;
+                    }
                     Deal deal;
                     DealBase.transaction(deal, GoodsBase, DCardsBase);
                     DealBase.add(deal);
@@ -315,47 +322,6 @@ void printMenu(int num)
         cout << "Введите пункт: ";
 }
 
-void check(int *a, int min, int max)
-{
-    int valid = 0;
-    char inpStr[1024];
-    char buffer = 0;
-    
-    while(!valid)
-        {
-            buffer = 0;
-            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
-            {
-                if(printf("Ввод не верен!\nПовторите ввод: "))
-                    getchar();
-            }
-            else
-                if((sscanf(inpStr,"%d%c",&*a,&buffer) != 1) || buffer != '\n')
-                    printf("Ввод не верен!\nПовторите ввод: ");
-            else
-                if (*a < min || *a > max)
-                    printf("Ввод не верен!\nПовторите ввод: ");
-            else
-                valid = 1;
-        }
-}
-
-void bcodeCheck(string &bcode)
-{
-    cout << "Введите штрихкод товара(формат: ТР******): ";
-    cin >> bcode;
-    while (true)
-    {
-        if (bcode[0] == 'T' && bcode[1] == 'P' && bcode.length() == 8)
-            break;
-        else
-        {
-            cout << "Неверный формат! Повторите ввод штрихкода: ";
-            cin >> bcode;
-        }
-    }
-}
-
 void dateMark(DealDate &date)
 {
     int day, month, year;
@@ -370,31 +336,6 @@ void dateMark(DealDate &date)
     date.Day = day;
     date.Month = month;
     date.Year = year;
-}
-
-int baseCheck(GoodsList base, DcardsList cardBase)
-{
-    int choice;
-    if (!base.getHead())
-    {
-        cout << "Ошибка! База товаров пуста!\n";
-        cout << "0 -> Вернуться в главное меню.\n";
-        check(&choice, 0, 0);
-        if (!choice)
-            printMenu(0);
-        return 1;
-    }
-    if (!cardBase.getHead())
-    {
-        cout << "Ошибка! База карт скидок пуста!";
-        cout << "0 -> Вернуться в главное меню.\n";
-        check(&choice, 0, 0);
-        if (!choice)
-            printMenu(0);
-        return 1;
-    }
-
-    return 0;
 }
 
 int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
@@ -490,5 +431,55 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
     }
     historyin.close();
     
+    return 0;
+}
+
+void check(int *a, int min, int max)
+{
+    int valid = 0;
+    char inpStr[1024];
+    char buffer = 0;
+    
+    while(!valid)
+        {
+            buffer = 0;
+            if((scanf("%1023[^\n]%c",inpStr,&buffer) != 2) || buffer != '\n')
+            {
+                if(printf("Ввод не верен!\nПовторите ввод: "))
+                    getchar();
+            }
+            else
+                if((sscanf(inpStr,"%d%c",&*a,&buffer) != 1) || buffer != '\n')
+                    printf("Ввод не верен!\nПовторите ввод: ");
+            else
+                if (*a < min || *a > max)
+                    printf("Ввод не верен!\nПовторите ввод: ");
+            else
+                valid = 1;
+        }
+}
+
+void bcodeCheck(string &bcode)
+{
+    cout << "Введите штрихкод товара(формат: ТР******): ";
+    cin >> bcode;
+    while (true)
+    {
+        if (bcode[0] == 'T' && bcode[1] == 'P' && bcode.length() == 8)
+            break;
+        else
+        {
+            cout << "Неверный формат! Повторите ввод штрихкода: ";
+            cin >> bcode;
+        }
+    }
+}
+
+int baseCheck(GoodsList base, DcardsList cardBase)
+{
+    if (!base.getHead())
+        return 1;
+    if (!cardBase.getHead())
+        return 1;
     return 0;
 }
