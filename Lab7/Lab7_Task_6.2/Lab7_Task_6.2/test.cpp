@@ -11,8 +11,15 @@ int main()
     assert(baseCheck(gBase, dcBase) == 1);
     assert(gBase.getHead() == NULL);
     
-    ShopGoods temp;
-    gBase.add(temp);
+    ShopGoods temp1, temp2;
+    temp1.Name = "Pr1";
+    temp2.Name = "Pr2";
+    
+    gBase.add(temp1);
+    gBase.add(temp2);
+    gBase.swap(temp1, temp2);
+    assert(temp1.Name == "Pr2");
+    assert(temp2.Name == "Pr1");
     
     assert(gBase.getHead() != NULL);
     assert(baseCheck(gBase, dcBase) == 1);
