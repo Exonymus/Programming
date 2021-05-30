@@ -32,6 +32,16 @@ int main()
     t.Date.Month = 0;
     assert(t.completeDate() == "ERROR");
     
+    t.Date.Day = 5;
+    t.Date.Month = 5;
+    t.Date.Year = 0;
+    assert(t.completeDate() == "ERROR");
+    
+    t.Date.Day = 5;
+    t.Date.Month = 0;
+    t.Date.Year = 5;
+    assert(t.completeDate() == "ERROR");
+    
     t.Date.Day = 0;
     t.Date.Month = 5;
     t.Date.Year = 5;
