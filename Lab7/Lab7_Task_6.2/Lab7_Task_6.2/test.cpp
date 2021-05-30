@@ -69,10 +69,10 @@ int main()
     assert(printMenu(-1) == 1);
     
     assert(gBase.fwrite("") == 1);
-    assert(gBase.fwrite("productBase.txt") == 0);
+    assert(gBase.fwrite("testfile1.txt") == 0);
     
     GoodsList gBase2;
-    assert(gBase2.fwrite("productBase.txt") == 1);
+    assert(gBase2.fwrite("testfile1.txt") == 1);
     
 
     
