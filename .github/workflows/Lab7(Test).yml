@@ -3,7 +3,8 @@ name: Tester(Lab7)
 on:
   push:
     branches: [ main ]
-
+codecov:
+  token: 9e6fa2e6-b250-46e1-aed0-2cef039414a7
 jobs:
   build:
 
