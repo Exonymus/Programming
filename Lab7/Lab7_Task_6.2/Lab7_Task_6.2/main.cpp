@@ -7,7 +7,7 @@ int main()
     DcardsList DCardsBase;
     DealList DealBase;
     
-    if (fileRead(GoodsBase,DCardsBase, DealBase))
+    if (fileRead(GoodsBase,DCardsBase, DealBase, "shopHistory.txt", "cardBase.txt", "productBase.txt"))
         exit(1);
     
     int choice = -1;
@@ -340,15 +340,15 @@ void dateMark(DealDate &date)
     date.Year = year;
 }
 
-int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
+int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase, string hist, string cards, string prods)
 {
-    ifstream historyin("shopHistory.txt", ios_base::in);
+    ifstream historyin(hist, ios_base::in);
     if (!historyin.is_open())
         return 1;
-    ifstream cardsin("cardBase.txt", ios_base::in);
+    ifstream cardsin(cards, ios_base::in);
     if (!cardsin.is_open())
         return 1;
-    ifstream productsin("productBase.txt", ios_base::in);
+    ifstream productsin(prods, ios_base::in);
     if (!productsin.is_open())
         return 1;
     

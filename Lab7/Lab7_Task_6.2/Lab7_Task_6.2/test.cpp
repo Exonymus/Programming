@@ -22,7 +22,11 @@ int main()
     
     assert(baseCheck(gBase, dcBase) == 0);
     
-    assert(fileRead(gBase, dcBase, dBase) == 0);
+    assert(fileRead(gBase, dcBase, dBase, "shopHistory.txt", "", "") == 1);
+    assert(fileRead(gBase, dcBase, dBase, "shopHistory.txt", "cardBase.txt", "") == 1);
+    assert(fileRead(gBase, dcBase, dBase, "shopHistory.txt", "", "productBase.txt") == 1);
+    assert(fileRead(gBase, dcBase, dBase, "shopHistory.txt", "cardBase.txt", "productBase.txt") == 0);
+    assert(fileRead(gBase, dcBase, dBase, "", "", "") == 1);
     
     Deal t;
     t.Date.Day = 0;

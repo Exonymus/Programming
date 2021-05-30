@@ -13,6 +13,7 @@ int printMenu(int num);
 void bcodeCheck(string &bcode);
 void dateMark(DealDate &date);
 int baseCheck(GoodsList base, DcardsList cardBase);
-int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase);
+int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase,
+             string hist, string cards, string prods);
 
 #endif
