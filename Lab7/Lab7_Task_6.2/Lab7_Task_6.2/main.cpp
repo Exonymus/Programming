@@ -246,7 +246,7 @@ int main()
         check(&choice, 0, 5);
     }
     
-    if (GoodsBase.fwrite())
+    if (GoodsBase.fwrite("productBase.txt"))
         return 1;
     if (DCardsBase.fwrite())
         return 1;

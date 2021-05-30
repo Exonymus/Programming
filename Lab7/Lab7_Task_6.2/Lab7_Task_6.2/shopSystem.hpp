@@ -46,7 +46,7 @@ class GoodsList
         ShopGoods *getHead();
         void sortList();
         void swap(ShopGoods &a, ShopGoods &b);
-        int fwrite();
+        int fwrite(string prods);
 };
 
 struct Deal

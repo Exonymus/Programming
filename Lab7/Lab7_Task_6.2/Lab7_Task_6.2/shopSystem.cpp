@@ -14,11 +14,11 @@ GoodsList::GoodsList()
    head = tail = NULL;
 }
 
-int GoodsList::fwrite()
+int GoodsList::fwrite(string prods)
 {
     if (head)
     {
-        ofstream productsin("productBase.txt", ios_base::out);
+        ofstream productsin(prods, ios_base::out);
         
         if (!productsin.is_open())
             return 1;
