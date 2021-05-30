@@ -38,11 +38,11 @@ class GoodsList
         GoodsList();
         void add(ShopGoods good);
         long getPrice(string bCode);
-        void changeBought(string bCode, int amount);
+        int changeBought(string bCode, int amount);
         void search(string bCode);
         void searchB(string &bCode);
         void setGood(ShopGoods &good);
-        void printBase() const;
+        int printBase() const;
         ShopGoods *getHead();
         void sortList();
         void swap(ShopGoods &a, ShopGoods &b);

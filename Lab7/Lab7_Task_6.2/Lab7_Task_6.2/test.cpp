@@ -15,9 +15,11 @@ int main()
     temp1.Name = "Pr1";
     temp1.Price = 100;
     temp1.BarCode = "BCODE";
+    temp1.GoodBought = 1;
     temp2.Name = "Pr2";
     temp2.BarCode = "Bcode123";
     temp2.Price = 50;
+    temp2.GoodBought = 1;
     
     gBase.add(temp1);
     gBase.add(temp2);
@@ -27,9 +29,12 @@ int main()
     
     assert(gBase.getPrice("BCODE") == 100);
     assert(gBase.getPrice("123") == -1);
+    assert(gBase.changeBought("123", 1) == 1);
+    assert(gBase.changeBought("BCODE", 1) == 0);
     
     assert(gBase.getHead() != NULL);
     assert(baseCheck(gBase, dcBase) == 1);
+    assert(gBase.printBase() == 0);
     
     DiscountCard tempc;
     dcBase.add(tempc);
@@ -81,6 +86,7 @@ int main()
     GoodsList gBase2;
     assert(gBase2.fwrite("testfile1.txt") == 1);
     assert(gBase2.getPrice("BCODE") == -1);
+    assert(gBase2.printBase() == 1);
     
     
 

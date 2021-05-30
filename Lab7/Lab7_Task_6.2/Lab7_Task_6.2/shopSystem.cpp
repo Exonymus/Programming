@@ -100,7 +100,7 @@ void GoodsList::setGood(ShopGoods &good)
     }
 }
 
-void GoodsList::changeBought(string bCode, int amount)
+int GoodsList::changeBought(string bCode, int amount)
 {
     ShopGoods *temp = head;
     while (temp)
@@ -108,13 +108,14 @@ void GoodsList::changeBought(string bCode, int amount)
         if (temp->BarCode == bCode)
         {
             temp->GoodBought += amount;
-            return;
+            return 0;
         }
         temp = temp->Next;
     }
+    return 1;
 }
 
-void GoodsList::printBase() const
+int GoodsList::printBase() const
 {
     if (head)
     {
@@ -129,8 +130,11 @@ void GoodsList::printBase() const
             buf = buf->Next;
         }
         cout << endl;
+        return 0;
     }
-    else cout << "Ошибка. База пуста.\n";
+    else
+        cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
 void GoodsList::swap(ShopGoods &a, ShopGoods &b)
