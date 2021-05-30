@@ -16,4 +16,4 @@ jobs:
            make test
            ./Lab7_Test
            make checkCov
-    -run: bash <(curl -s https://codecov.io/bash) -t 9e6fa2e6-b250-46e1-aed0-2cef039414a7
+    - run: bash <(curl -s https://codecov.io/bash) -t 9e6fa2e6-b250-46e1-aed0-2cef039414a7
