@@ -52,7 +52,7 @@ int main()
     assert(fileRead(gBase, dcBase, dBase, "shopHistory.txt", "cardBase.txt", "productBase.txt") == 0);
     assert(fileRead(gBase, dcBase, dBase, "", "", "") == 1);
     
-    Deal t;
+    Deal t, t2;
     t.Date.Day = 0;
     assert(t.completeDate() == "ERROR");
     
@@ -75,19 +75,24 @@ int main()
     t.Date.Year = 5;
     assert(t.completeDate() == "ERROR");
     
-    t.Date.Day = 5;
-    t.Date.Month = 5;
-    t.Date.Year = 1991;
+    t.Date.Day = t2.Date.Day = 5;
+    t.Date.Month = t2.Date.Month = 5;
+    t.Date.Year = t2.Date.Year = 1991;
     
-    t.GoodsVariety  = 1;
-    t.Summ  = 1;
-    t.IfUsedCreditCard = false;
-    t.IfUsedDiscount = false;
-    t.ListOfBuyedGoods = &gBase;
-    
-    assert(t.completeDate() == "5.5.1991");
+    t.GoodsVariety = t2.GoodsVariety = 1;
+    t.Summ = 1;
+    t2.Summ = 2;
+    t.IfUsedCreditCard = t2.IfUsedCreditCard = false;
+    t.IfUsedDiscount = t2.IfUsedDiscount = false;
+    t.ListOfBuyedGoods = t2.ListOfBuyedGoods =&gBase;
     
     dBase.add(t);
+    dBase.add(t2);
+    dBase.swap(t,t2);
+    
+    assert(t.completeDate() == "5.5.1991");
+    assert(t.Summ = 2);
+    
     assert(dBase.printBase() == 0);
     
     DiscountCard dc;
