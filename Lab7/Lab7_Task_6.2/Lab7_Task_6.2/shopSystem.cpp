@@ -267,7 +267,7 @@ double DcardsList::getDiscount(int num)
     return 0;
 }
 
-void DcardsList::printBase() const
+int DcardsList::printBase() const
 {
     if (head)
     {
@@ -281,9 +281,11 @@ void DcardsList::printBase() const
             buf = buf->Next;
         }
         cout << endl;
+        return 0;
     }
     else
         cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
 int DcardsList::fwrite()
@@ -415,7 +417,7 @@ void DealList::add(Deal deal)
     tail = buf;
 }
 
-void DealList::printBase() const
+int DealList::printBase() const
 {
     if (head)
     {
@@ -447,8 +449,11 @@ void DealList::printBase() const
                 cout << endl;
         }
         cout << endl;
+        return 0;
     }
-    else cout << "Ошибка. База пуста.\n";
+    else
+        cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
 void DealList::swap(Deal &a, Deal &b)

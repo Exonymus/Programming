@@ -74,7 +74,7 @@ class DcardsList
         double getDiscount(int num);
         void search(int disc);
         void search(int &dcode, double &disc);
-        void printBase() const;
+        int printBase() const;
         DiscountCard *getHead();
         void sortList();
         void swap(DiscountCard &a, DiscountCard &b);
@@ -91,7 +91,7 @@ class DealList
         void add(Deal deal);
         void transaction(Deal &d, GoodsList base, DcardsList cardBase);
         void search(string date);
-        void printBase() const;
+        int printBase() const;
         void sortList();
         void swap(Deal &a, Deal &b);
         int fwrite();
