@@ -29,7 +29,7 @@ int main()
     assert(baseCheck(gBase, dcBase) == 0);
     cout << "Test 5 - Valid\n";
     
-    assert(fileRead(gBase, dcBase, dBase) == 1);
+    assert(fileRead(gBase, dcBase, dBase) == 0);
     cout << "Test 6 - Valid\n";
     
     Deal t;
