@@ -78,6 +78,13 @@ int main()
     t.Date.Day = 5;
     t.Date.Month = 5;
     t.Date.Year = 1991;
+    
+    t.GoodsVariety  = 1;
+    t.Summ  = 1;
+    t.IfUsedCreditCard = false;
+    t.IfUsedDiscount = false;
+    t.ListOfBuyedGoods = &gBase;
+    
     assert(t.completeDate() == "5.5.1991");
     
     dBase.add(t);
