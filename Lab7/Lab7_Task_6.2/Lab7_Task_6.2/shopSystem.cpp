@@ -156,13 +156,16 @@ void GoodsList::swap(ShopGoods &a, ShopGoods &b)
     b.GoodBought = temp.GoodBought;
 }
  
-void GoodsList::sortList()
+int GoodsList::sortList()
 {
+    if (!head)
+        return 1;
     ShopGoods *buf = head;
     for (ShopGoods *i = buf; i; i = i->Next)
         for (ShopGoods *j = i->Next; j; j = j->Next)
             if (i->Price < j->Price)
                 swap(*i, *j);
+    return 0;
 }
 
 ShopGoods *GoodsList::getHead()
@@ -170,7 +173,7 @@ ShopGoods *GoodsList::getHead()
     return head;
 }
 
-void GoodsList::search(string bCode)
+int GoodsList::search(string bCode)
 {
     if (head)
     {
@@ -191,28 +194,33 @@ void GoodsList::search(string bCode)
             buf = buf->Next;
         }
         if (amount)
-            return;
+            return 0;
         else
             cout << "Ошибка. Товар не найден.";
+        return 1;
     }
     else
         cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
-void GoodsList::searchB(string &bCode)
+int GoodsList::searchB(string &bCode)
 {
+    if (!head)
+        return 1;
     ShopGoods *buf = head;
     
     while (buf)
     {
         if (buf->BarCode == bCode)
-            return;
+            return 0;
         buf = buf->Next;
     }
     
     cout << "Штрихкод неверен!\n";
     bcodeCheck(bCode);
     searchB(bCode);
+    return  0;
 }
 
 DcardsList::DcardsList()
