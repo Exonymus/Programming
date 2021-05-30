@@ -259,12 +259,14 @@ double DcardsList::getDiscount(int num)
         {
             if (buf->DiscountCardCode == to_string(num))
                 return buf->Discount;
+            buf = buf->Next;
         }
         cout << "Ошибка. Неверный код карты.";
+        return 1;
     }
     else
         cout << "Ошибка. База пуста.\n";
-    return 0;
+    return 1;
 }
 
 int DcardsList::printBase() const
@@ -327,13 +329,16 @@ void DcardsList::swap(DiscountCard &a, DiscountCard &b)
     b.DiscountCardCode = temp.DiscountCardCode;
 }
  
-void DcardsList::sortList()
+int DcardsList::sortList()
 {
+    if (!head)
+        return 1;
     DiscountCard *buf = head;
     for (DiscountCard *i = buf; i; i = i->Next)
         for (DiscountCard *j = i->Next; j; j = j->Next)
             if (i->Discount < j->Discount)
                 swap(*i, *j);
+    return 0;
 }
 
 void DcardsList::search(int disc)

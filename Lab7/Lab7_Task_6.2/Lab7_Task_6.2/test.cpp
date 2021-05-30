@@ -79,10 +79,17 @@ int main()
     t.Date.Month = t2.Date.Month = 5;
     t.Date.Year = t2.Date.Year = 1991;
     
-    DiscountCard dc;
+    DiscountCard dc, dc2;
     dc.DiscountCardCode = "111111";
     dc.Discount = 2.34;
+    dc2 = dc;
+    dc2.DiscountCardCode = "12333";
     dcBase.add(dc);
+    dcBase.add(dc2);
+    
+    assert(dcBase.getDiscount(01) == 1);
+    assert(2e-10 > dcBase.getDiscount(111111) - 2.34);
+    assert(dcBase.sortList() == 0);
     
     t.GoodsVariety = t2.GoodsVariety = 1;
     t.Summ = 1;
@@ -126,15 +133,19 @@ int main()
     assert(gBase2.fwrite("testfile1.txt") == 1);
     assert(dBase2.fwrite("testfile2.txt") == 1);
     assert(dcBase2.fwrite("testfile3.txt") == 1);
+    
     assert(gBase2.getPrice("BCODE") == -1);
     assert(gBase2.printBase() == 1);
     assert(gBase2.sortList() == 1);
     assert(gBase2.search("123") == 1);
-    assert(dBase2.search("123") == 1);
     assert(gBase2.searchB(bcode) == 1);
-    assert(dBase2.printBase() == 1);
-    assert(dcBase2.printBase() == 1);
     
+    assert(dBase2.search("123") == 1);
+    assert(dBase2.printBase() == 1);
+    
+    assert(dcBase2.printBase() == 1);
+    assert(dcBase2.getDiscount(01) == 1);
+    assert(dcBase2.sortList() == 1);
 
     
     return 0;

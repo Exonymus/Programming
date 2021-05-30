@@ -76,7 +76,7 @@ class DcardsList
         void search(int &dcode, double &disc);
         int printBase() const;
         DiscountCard *getHead();
-        void sortList();
+        int sortList();
         void swap(DiscountCard &a, DiscountCard &b);
         int fwrite(string cards);
 };
