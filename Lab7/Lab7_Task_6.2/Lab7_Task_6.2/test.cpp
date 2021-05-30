@@ -79,11 +79,20 @@ int main()
     t.Date.Month = t2.Date.Month = 5;
     t.Date.Year = t2.Date.Year = 1991;
     
+    DiscountCard dc;
+    dc.DiscountCardCode = "111111";
+    dc.Discount = 2.34;
+    dcBase.add(dc);
+    
     t.GoodsVariety = t2.GoodsVariety = 1;
     t.Summ = 1;
     t2.Summ = 2;
-    t.IfUsedCreditCard = t2.IfUsedCreditCard = false;
-    t.IfUsedDiscount = t2.IfUsedDiscount = false;
+    t.IfUsedCreditCard = false;
+    t2.IfUsedCreditCard = true;
+    t2.CreditCardCode = "1";
+    t.IfUsedDiscount = false;
+    t2.IfUsedDiscount = true;
+    t2.UsedDiscountCard = dc;
     t.ListOfBuyedGoods = t2.ListOfBuyedGoods =&gBase;
     
     dBase.add(t);
@@ -96,11 +105,6 @@ int main()
     assert(dBase.search("5.5.1991") == 0);
     
     assert(dBase.printBase() == 0);
-    
-    DiscountCard dc;
-    dc.DiscountCardCode = "111111";
-    dc.Discount = 2.34;
-    dcBase.add(dc);
     assert(dcBase.printBase() == 0);
     
     for (int i = 0; i < 5; i++)
