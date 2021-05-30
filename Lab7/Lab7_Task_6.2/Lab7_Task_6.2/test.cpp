@@ -32,16 +32,6 @@ int main()
     t.Date.Month = 0;
     assert(t.completeDate() == "ERROR");
     
-    t.Date.Day = 5;
-    t.Date.Month = 5;
-    t.Date.Year = 0;
-    assert(t.completeDate() == "ERROR");
-    
-    t.Date.Day = 5;
-    t.Date.Month = 0;
-    t.Date.Year = 5;
-    assert(t.completeDate() == "ERROR");
-    
     t.Date.Day = 0;
     t.Date.Month = 5;
     t.Date.Year = 5;
@@ -51,7 +41,6 @@ int main()
     t.Date.Month = 5;
     t.Date.Year = 1991;
     assert(t.completeDate() == "5.5.1991");
-    cout << "Test 9 - Valid\n";
     
     
 
