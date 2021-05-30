@@ -35,7 +35,7 @@ int main()
     assert(gBase.search("123") == 1);
     assert(gBase.searchB(bcode) == 0);
     assert(gBase.search("BCODE") == 0);
-    assert(gBase.sortList() == 1);
+    assert(gBase.sortList() == 0);
     
     assert(gBase.getHead() != NULL);
     assert(baseCheck(gBase, dcBase) == 1);
