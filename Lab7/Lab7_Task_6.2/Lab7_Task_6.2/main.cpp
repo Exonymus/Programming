@@ -258,7 +258,7 @@ int main()
 
 #endif
 
-void printMenu(int num)
+int printMenu(int num)
 {
     system("clear");
     switch(num)
@@ -315,11 +315,13 @@ void printMenu(int num)
         }
             
         default:
-            return;
+            return 1;
             break;
     }
     if (num != 1)
         cout << "Введите пункт: ";
+    
+    return 0;
 }
 
 void dateMark(DealDate &date)

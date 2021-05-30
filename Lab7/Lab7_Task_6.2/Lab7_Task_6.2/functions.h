@@ -9,7 +9,7 @@
 using namespace std;
 
 void check(int *a, int min, int max);
-void printMenu(int num);
+int printMenu(int num);
 void bcodeCheck(string &bcode);
 void dateMark(DealDate &date);
 int baseCheck(GoodsList base, DcardsList cardBase);
