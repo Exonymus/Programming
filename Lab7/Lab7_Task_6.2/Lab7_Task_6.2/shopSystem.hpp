@@ -39,12 +39,11 @@ class GoodsList
         void add(ShopGoods good);
         long getPrice(string bCode);
         void changeBought(string bCode, int amount);
-        void search(string bCode, bool menu);
+        void search(string bCode);
+        void searchB(string &bCode);
         void setGood(ShopGoods &good);
         void printBase() const;
         ShopGoods *getHead();
-        void delTail();
-        void delHead();
         void sortList();
         void swap(ShopGoods &a, ShopGoods &b);
         int fwrite();
@@ -74,11 +73,9 @@ class DcardsList
         void add(DiscountCard card);
         double getDiscount(int num);
         void search(int disc);
-        void search(string dcode, double &disc);
+        void search(int &dcode, double &disc);
         void printBase() const;
         DiscountCard *getHead();
-        void delTail();
-        void delHead();
         void sortList();
         void swap(DiscountCard &a, DiscountCard &b);
         int fwrite();
@@ -95,8 +92,6 @@ class DealList
         void transaction(Deal &d, GoodsList base, DcardsList cardBase);
         void search(string date);
         void printBase() const;
-        void delTail();
-        void delHead();
         void sortList();
         void swap(Deal &a, Deal &b);
         int fwrite();

@@ -28,7 +28,8 @@ int GoodsList::fwrite()
             << " " << buf->GoodBought
             << " " << buf->BarCode;
             
-            productsin << "\n";
+            if (buf->Next)
+                productsin << " .\n";
             buf = buf->Next;
         }
         productsin.close();
@@ -71,6 +72,8 @@ long GoodsList::getPrice(string bCode)
         {
             if (buf->BarCode == bCode)
                 return buf->Price;
+            
+            buf = buf->Next;
         }
         cout << "Ошибка. Неизвестный продукт.";
     }
@@ -126,30 +129,6 @@ void GoodsList::printBase() const
     else cout << "Ошибка. База пуста.\n";
 }
 
-void GoodsList::delHead()
-{
-    if (head) {
-        ShopGoods *buf = head;
-        head = head->Next;
-        head->Prev = NULL;
-        delete buf;
-    }
-    else cout << "Ошибка. База пуста.\n" << endl;
-}
- 
-void GoodsList::delTail()
-{
-    if (tail)
-    {
-        ShopGoods *buf = tail;
-        tail = tail->Prev;
-        tail->Next = NULL;
-        delete buf;
-    }
-    else
-        cout << "Ошибка. База пуста.\n" << endl;
-}
-
 void GoodsList::swap(ShopGoods &a, ShopGoods &b)
 {
     ShopGoods temp;
@@ -183,43 +162,49 @@ ShopGoods *GoodsList::getHead()
     return head;
 }
 
-void GoodsList::search(string bCode, bool menu)
+void GoodsList::search(string bCode)
 {
     if (head)
     {
         ShopGoods *buf = head;
         int amount = 0;
-        if (menu)
-            cout << "\t\tРезультат поиска:\n";
+        cout << "\t\tРезультат поиска:\n";
+        
         while (buf)
         {
             if (buf->BarCode == bCode)
             {
                 amount++;
-                if (menu)
-                    cout << amount << ")  Название: " << buf->Name
-                         << "  Цена: " << buf->Price
-                         << "  Продано: " << buf->GoodBought << endl;
+                cout << amount << ")  Название: " << buf->Name
+                     << "  Цена: " << buf->Price
+                     << "  Продано: " << buf->GoodBought << endl;
             }
             
             buf = buf->Next;
         }
-        if (amount && !menu)
+        if (amount)
             return;
-        if (!amount)
-        {
-            if (menu)
-                cout << "Ошибка. Товар не найден.";
-            else
-            {
-                cout << "Штрихкод неверен!\n";
-                bcodeCheck(bCode);
-                search(bCode, false);
-            }
-        }
+        else
+            cout << "Ошибка. Товар не найден.";
     }
     else
         cout << "Ошибка. База пуста.\n";
+}
+
+void GoodsList::searchB(string &bCode)
+{
+    ShopGoods *buf = head;
+    
+    while (buf)
+    {
+        if (buf->BarCode == bCode)
+            return;
+        buf = buf->Next;
+    }
+    
+    cout << "Штрихкод неверен!\n";
+    bcodeCheck(bCode);
+    searchB(bCode);
 }
 
 DcardsList::DcardsList()
@@ -263,7 +248,7 @@ double DcardsList::getDiscount(int num)
     }
     else
         cout << "Ошибка. База пуста.\n";
-    return NULL;
+    return 0;
 }
 
 void DcardsList::printBase() const
@@ -300,7 +285,8 @@ int DcardsList::fwrite()
             cardsin << buf->DiscountCardCode
             << " " << buf->Discount;
             
-            cardsin << "\n";
+            if (buf->Next)
+                cardsin << " .\n";
             buf = buf->Next;
         }
         cardsin.close();
@@ -308,32 +294,6 @@ int DcardsList::fwrite()
     else
         return 1;
     return 0;
-}
-
-void DcardsList::delHead()
-{
-    if (head)
-    {
-        DiscountCard *buf = head;
-        head = head->Next;
-        head->Prev = NULL;
-        delete buf;
-    }
-    else
-        cout << "Ошибка. База пуста.\n" << endl;
-}
- 
-void DcardsList::delTail()
-{
-    if (tail)
-    {
-        DiscountCard *buf = tail;
-        tail = tail->Prev;
-        tail->Next = NULL;
-        delete buf;
-    }
-    else
-        cout << "Ошибка. База пуста.\n" << endl;
 }
 
 void DcardsList::swap(DiscountCard &a, DiscountCard &b)
@@ -383,27 +343,22 @@ void DcardsList::search(int disc)
         cout << "Ошибка. База пуста.\n";
 }
 
-void DcardsList::search(string dcode, double &disc)
+void DcardsList::search(int &dcode, double &disc)
 {
-    bool checked = false;
     DiscountCard *searcard = head;
     while (searcard)
     {
-        if (searcard->DiscountCardCode == dcode)
+        if (searcard->DiscountCardCode == to_string(dcode))
         {
             disc = searcard->Discount;
-            checked = true;
+            return;;
         }
         searcard = searcard->Next;
     }
     
-    if (!checked)
-    {
-        cout << "Введенный код карты отсуствует в базе. Повторите ввод: ";
-        int code;
-        check(&code, 10000000, 99999999);
-        search(to_string(code), disc);
-    }
+    cout << "Введенный код карты отсуствует в базе. Повторите ввод: ";
+    check(&dcode, 10000000, 99999999);
+    search(dcode, disc);
 }
 
 DiscountCard *DcardsList::getHead()
@@ -478,30 +433,6 @@ void DealList::printBase() const
         cout << endl;
     }
     else cout << "Ошибка. База пуста.\n";
-}
-
-void DealList::delHead()
-{
-    if (head) {
-        Deal *buf = head;
-        head = head->Next;
-        head->Prev = NULL;
-        delete buf;
-    }
-    else cout << "Ошибка. База пуста.\n" << endl;
-}
- 
-void DealList::delTail()
-{
-    if (tail)
-    {
-        Deal *buf = tail;
-        tail = tail->Prev;
-        tail->Next = NULL;
-        delete buf;
-    }
-    else
-        cout << "Ошибка. База пуста.\n" << endl;
 }
 
 void DealList::swap(Deal &a, Deal &b)
@@ -599,10 +530,7 @@ int DealList::fwrite()
         {
             historyin << buf->Date.Day
                       << " " << buf->Date.Month
-                      << buf->Date.Day
-                      << " " << buf->Date.Year
-                      << buf->Date.Day
-                      << " ";
+                      << " " << buf->Date.Year << " ";
             
             ShopGoods *buf2 = buf->ListOfBuyedGoods->getHead();
             while (buf2)
@@ -610,15 +538,14 @@ int DealList::fwrite()
                 historyin << buf2->BarCode
                 << " " << buf2->GoodBought;
                 
-                if (!buf->Next)
+                if (!buf2->Next)
                     historyin << " # ";
                 else
                     historyin << " . ";
                 buf2 = buf2->Next;
             }
             
-            historyin << buf->Summ
-            << " " << buf->IfUsedDiscount << " ";
+            historyin << buf->IfUsedDiscount << " ";
             
             if (buf->IfUsedDiscount)
                 historyin << buf->UsedDiscountCard.DiscountCardCode << " ";
@@ -626,7 +553,9 @@ int DealList::fwrite()
             
             if (buf->IfUsedCreditCard)
                 historyin << buf->CreditCardCode;
-            historyin << "\n";
+            
+            if (buf->Next)
+                historyin << " .\n";
             
             buf = buf->Next;
         }
@@ -653,18 +582,18 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
         int checked, amount;
         
         bcodeCheck(barcode);
-        base.search(barcode, false);
+        base.searchB(barcode);
         temp.BarCode = barcode;
         base.setGood(temp);
         
         cout << "Введите кол-во продукта: ";
-        cin >> amount;
+        check(&amount, 1, 100);
         base.changeBought(barcode, amount);
         temp.GoodBought = amount;
         d.GoodsVariety++;
         rawSumm += base.getPrice(barcode) * amount;
         goods->add(temp);
-        
+
         cout << "Чтобы завершить ввод продуктов введите 0, чтобы продолжить - 1: ";
         check(&checked, 0, 1);
         
@@ -685,7 +614,6 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
     {
         cout << "Ввод не верен! Повторите ввод: ";
         check(&code, 10000000, 99999999);
-        
     }
     else
         d.IfUsedDiscount = false;
@@ -693,7 +621,7 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
     if (code)
     {
         d.IfUsedDiscount = true;
-        cardBase.search(to_string(code), disc);
+        cardBase.search(code, disc);
         d.UsedDiscountCard.DiscountCardCode = to_string(code);
         d.UsedDiscountCard.Discount = disc;
         rawSumm = rawSumm * (100 - disc) / 100;

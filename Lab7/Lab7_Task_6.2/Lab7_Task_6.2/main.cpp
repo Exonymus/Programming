@@ -116,7 +116,7 @@ int main()
                         {
                             string bcode;
                             bcodeCheck(bcode);
-                            GoodsBase.search(bcode, true);
+                            GoodsBase.search(bcode);
                             cout << "Введите пункт: ";
                             break;
                         }
@@ -178,6 +178,7 @@ int main()
                             cout << "Введите примерное значение скидки(целое число): ";
                             check(&disc, 0, 100);
                             DCardsBase.search(disc);
+                            cout << "Введите пункт: ";
                             break;
                         }
                             
@@ -247,6 +248,8 @@ int main()
     
     return 0;
 }
+
+#endif
 
 void printMenu(int num)
 {
@@ -406,12 +409,15 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
     if (!productsin.is_open())
         return 1;
     
+    char c;
+    
     while(!cardsin.eof())
     {
         DiscountCard temp;
         cardsin >> temp.DiscountCardCode;
         cardsin >> temp.Discount;
         DCardsBase.add(temp);
+        cardsin >> c;
     }
     cardsin.close();
     
@@ -422,6 +428,7 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
         productsin >> temp.Price;
         productsin >> temp.GoodBought;
         productsin >> temp.BarCode;
+        productsin >> c;
         GoodsBase.add(temp);
     }
     productsin.close();
@@ -437,6 +444,7 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
         historyin >> d.Date.Year;
         
         GoodsList *goods = new GoodsList;
+        d.Summ = 0;
         
         while(temps != "#")
         {
@@ -449,23 +457,28 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
             GoodsBase.setGood(temp);
             historyin >> temp.GoodBought;
             goods->add(temp);
+            d.Summ += temp.Price * temp.GoodBought;
+            
             d.GoodsVariety++;
             
             historyin >> temps;
         }
         
-        historyin >> d.Summ;
+        temps = "";
+        
         d.ListOfBuyedGoods = goods;
         
         historyin >> d.IfUsedDiscount;
         if (d.IfUsedDiscount)
         {
             double disc;
-            string code;
+            int code;
             historyin >> code;
             DCardsBase.search(code, disc);
-            d.UsedDiscountCard.DiscountCardCode = code;
+            d.UsedDiscountCard.DiscountCardCode = to_string(code);
             d.UsedDiscountCard.Discount = disc;
+            
+            d.Summ = d.Summ * (100 - disc) / 100;
         }
         
         historyin >> d.IfUsedCreditCard;
@@ -473,10 +486,9 @@ int fileRead(GoodsList &GoodsBase, DcardsList &DCardsBase, DealList &DealBase)
             historyin >> d.CreditCardCode;
         
         DealBase.add(d);
+        historyin >> c;
     }
     historyin.close();
     
     return 0;
 }
-
-#endif
