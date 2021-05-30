@@ -13,13 +13,20 @@ int main()
     
     ShopGoods temp1, temp2;
     temp1.Name = "Pr1";
+    temp1.Price = 100;
+    temp1.BarCode = "BCODE";
     temp2.Name = "Pr2";
+    temp2.BarCode = "Bcode123";
+    temp2.Price = 50;
     
     gBase.add(temp1);
     gBase.add(temp2);
     gBase.swap(temp1, temp2);
     assert(temp1.Name == "Pr2");
     assert(temp2.Name == "Pr1");
+    
+    assert(gBase.getPrice("BCODE") == 100);
+    assert(gBase.getPrice("123") == -1);
     
     assert(gBase.getHead() != NULL);
     assert(baseCheck(gBase, dcBase) == 1);
@@ -73,6 +80,8 @@ int main()
     
     GoodsList gBase2;
     assert(gBase2.fwrite("testfile1.txt") == 1);
+    assert(gBase2.getPrice("BCODE") == -1);
+    
     
 
     

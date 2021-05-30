@@ -78,10 +78,11 @@ long GoodsList::getPrice(string bCode)
             
             buf = buf->Next;
         }
-        cout << "Ошибка. Неизвестный продукт.";
+        return -1;
     }
-    else cout << "Ошибка. База пуста.\n";
-    return NULL;
+    else
+        cout << "Ошибка. База пуста.\n";
+    return -1;
 }
 
 void GoodsList::setGood(ShopGoods &good)
@@ -594,6 +595,7 @@ void DealList::transaction(Deal &d, GoodsList base, DcardsList cardBase)
         base.changeBought(barcode, amount);
         temp.GoodBought = amount;
         d.GoodsVariety++;
+        
         rawSumm += base.getPrice(barcode) * amount;
         goods->add(temp);
 
