@@ -15,8 +15,8 @@ jobs:
       run: |
            cd Lab7/Lab7_Task_6.2/Lab7_Task_6.2
            make test
-           make
     - run: |
            cd Lab7/Lab7_Task_6.2/
            ./Lab7_Test
+    - run: make
     - run: make checkcov
