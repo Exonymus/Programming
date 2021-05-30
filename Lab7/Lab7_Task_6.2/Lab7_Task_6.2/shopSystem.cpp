@@ -288,11 +288,11 @@ int DcardsList::printBase() const
     return 1;
 }
 
-int DcardsList::fwrite()
+int DcardsList::fwrite(string cards)
 {
     if (head)
     {
-        ofstream cardsin("cardBase.txt", ios_base::out);
+        ofstream cardsin(cards, ios_base::out);
         
         if (!cardsin.is_open())
             return 1;
@@ -537,11 +537,11 @@ void DealList::search(string date)
         cout << "Ошибка. База пуста.\n";
 }
 
-int DealList::fwrite()
+int DealList::fwrite(string history)
 {
     if (head)
     {
-        ofstream historyin("shopHistory.txt", ios_base::out);
+        ofstream historyin(history, ios_base::out);
         
         if (!historyin.is_open())
             return 1;

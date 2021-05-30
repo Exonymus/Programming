@@ -248,9 +248,9 @@ int main()
     
     if (GoodsBase.fwrite("productBase.txt"))
         return 1;
-    if (DCardsBase.fwrite())
+    if (DCardsBase.fwrite("cardBase.txt"))
         return 1;
-    if (DealBase.fwrite())
+    if (DealBase.fwrite("shopHistory.txt"))
         return 1;
     
     return 0;

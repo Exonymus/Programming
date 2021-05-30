@@ -78,7 +78,7 @@ class DcardsList
         DiscountCard *getHead();
         void sortList();
         void swap(DiscountCard &a, DiscountCard &b);
-        int fwrite();
+        int fwrite(string cards);
 };
 
 class DealList
@@ -94,7 +94,7 @@ class DealList
         int printBase() const;
         void sortList();
         void swap(Deal &a, Deal &b);
-        int fwrite();
+        int fwrite(string history);
 };
 
 #endif

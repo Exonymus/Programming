@@ -102,13 +102,19 @@ int main()
     assert(printMenu(-1) == 1);
     
     assert(gBase.fwrite("") == 1);
+    assert(dBase.fwrite("") == 1);
+    assert(dcBase.fwrite("") == 1);
     assert(gBase.fwrite("testfile1.txt") == 0);
+    assert(dBase.fwrite("testfile2.txt") == 0);
+    assert(dcBase.fwrite("testfile3.txt") == 0);
     
     GoodsList gBase2;
     DealList dBase2;
     DcardsList dcBase2;
     
     assert(gBase2.fwrite("testfile1.txt") == 1);
+    assert(dBase2.fwrite("testfile2.txt") == 1);
+    assert(dcBase2.fwrite("testfile3.txt") == 1);
     assert(gBase2.getPrice("BCODE") == -1);
     assert(gBase2.printBase() == 1);
     assert(gBase2.sortList() == 1);
