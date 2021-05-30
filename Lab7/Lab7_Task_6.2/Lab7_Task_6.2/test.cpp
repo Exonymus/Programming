@@ -52,7 +52,7 @@ int main()
     t.Date.Year = 1991;
     assert(t.completeDate() == "5.5.1991");
     
-    for (int i = 0; i < 5)
+    for (int i = 0; i < 5; i++)
         assert(printMenu(i) == 0);
     assert(printMenu(5) == 1);
     assert(printMenu(-1) == 1);
