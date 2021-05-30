@@ -90,7 +90,7 @@ class DealList
         DealList();
         void add(Deal deal);
         void transaction(Deal &d, GoodsList base, DcardsList cardBase);
-        void search(string date);
+        int search(string date);
         int printBase() const;
         void sortList();
         void swap(Deal &a, Deal &b);

@@ -91,7 +91,9 @@ int main()
     dBase.swap(t,t2);
     
     assert(t.completeDate() == "5.5.1991");
-    assert(t.Summ = 2);
+    assert(t.Summ == 2);
+    assert(dBase.search("123") == 1);
+    assert(dBase.search("5.5.1991") == 0);
     
     assert(dBase.printBase() == 0);
     
@@ -124,6 +126,7 @@ int main()
     assert(gBase2.printBase() == 1);
     assert(gBase2.sortList() == 1);
     assert(gBase2.search("123") == 1);
+    assert(dBase2.search("123") == 1);
     assert(gBase2.searchB(bcode) == 1);
     assert(dBase2.printBase() == 1);
     assert(dcBase2.printBase() == 1);

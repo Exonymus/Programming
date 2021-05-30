@@ -497,7 +497,7 @@ void DealList::sortList()
                 swap(*i, *j);
 }
 
-void DealList::search(string date)
+int DealList::search(string date)
 {
     if (head)
     {
@@ -530,11 +530,15 @@ void DealList::search(string date)
             
             buf = buf->Next;
         }
-        if (!amount)
+        if (amount)
+            return 0;
+        else
             cout << "Ошибка. Товары не найден.";
+        return 1;
     }
     else
         cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
 int DealList::fwrite(string history)
