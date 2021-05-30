@@ -62,7 +62,6 @@ int main()
     assert(printMenu(-1) == 1);
     
     assert(gBase.fwrite("") == 1);
-    assert(gBase.fwrite("testfile.txt") == 1);
     assert(gBase.fwrite("productBase.txt") == 0);
     
 
