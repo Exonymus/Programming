@@ -3,3 +3,6 @@ main: main.cpp
 
 test: main.cpp test.cpp
 	g++ -o ../Lab7_Test test.cpp shopSystem.cpp main.cpp -D TEST
+
+checkcov:
+	gcov library
