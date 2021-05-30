@@ -11,12 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
-      run: |
+    - run: |
            cd Lab7/Lab7_Task_6.2/Lab7_Task_6.2
            make test
-    - run: |
-           cd Lab7/Lab7_Task_6.2/
            ./Lab7_Test
-    - run: make main
-    - run: make checkcov
+           make checkCov
