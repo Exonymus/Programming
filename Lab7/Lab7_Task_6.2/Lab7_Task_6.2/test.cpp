@@ -92,6 +92,7 @@ int main()
     
     DiscountCard dc;
     dc.DiscountCardCode = "111111";
+    dc.Discount = 2.34;
     dcBase.add(dc);
     assert(dcBase.printBase() == 0);
     
