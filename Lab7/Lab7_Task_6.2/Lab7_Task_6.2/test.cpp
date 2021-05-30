@@ -64,7 +64,7 @@ int main()
     assert(gBase.fwrite("") == 1);
     assert(gBase.fwrite("productBase.txt") == 0);
     
-    GoodList gBase2;
+    GoodsList gBase2;
     assert(gBase2.fwrite("productBase.txt") == 1);
     
 
