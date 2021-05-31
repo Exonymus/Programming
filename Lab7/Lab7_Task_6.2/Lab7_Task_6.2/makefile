@@ -4,6 +4,9 @@ main: main.cpp
 test: main.cpp test.cpp
 	g++ -fprofile-arcs -ftest-coverage -fPIC -O0 test.cpp main.cpp shopSystem.cpp -o Lab7_Test -D TEST
 
+runtest:
+	./Lab7_Test < input.txt
+
 checkCov:
 	gcov test.cpp main.cpp shopSystem.cpp
 

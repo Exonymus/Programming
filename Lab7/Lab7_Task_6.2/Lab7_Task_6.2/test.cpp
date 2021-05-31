@@ -152,6 +152,13 @@ int main()
     assert(dcBase2.sortList() == 1);
     assert(dcBase2.search(1000) == 1);
     
+    DealDate dd;
+    dateMark(dd);
+    assert(dd.Day = 5);
+    assert(dd.Day = 5);
+    assert(dd.Day = 1991);
+    
+    
     return 0;
 }
 #endif
