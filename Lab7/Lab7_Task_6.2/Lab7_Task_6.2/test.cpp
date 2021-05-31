@@ -160,6 +160,7 @@ int main()
     
     bcodeCheck(bcode);
     assert(bcode == "TP000999");
+    dBase.transaction(t, gBase, dcBase);
     
     return 0;
 }
