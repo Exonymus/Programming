@@ -158,6 +158,8 @@ int main()
     assert(dd.Day = 5);
     assert(dd.Day = 1991);
     
+    bcodeCheck(bcode);
+    assert(bcode == "TP000999");
     
     return 0;
 }
