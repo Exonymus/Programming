@@ -341,7 +341,7 @@ int DcardsList::sortList()
     return 0;
 }
 
-void DcardsList::search(int disc)
+int DcardsList::search(int disc)
 {
     if (head)
     {
@@ -359,11 +359,15 @@ void DcardsList::search(int disc)
             
             buf = buf->Next;
         }
-        if (!amount)
+        if (amount)
+            return 0;
+        else
             cout << "Ошибка. Карты не найдены.";
+        return 1;
     }
     else
         cout << "Ошибка. База пуста.\n";
+    return 1;
 }
 
 void DcardsList::search(int &dcode, double &disc)
@@ -493,13 +497,16 @@ void DealList::swap(Deal &a, Deal &b)
     b.ListOfBuyedGoods = temp.ListOfBuyedGoods;
 }
  
-void DealList::sortList()
+int DealList::sortList()
 {
+    if (!head)
+        return 1;
     Deal *buf = head;
     for (Deal *i = buf; i; i = i->Next)
         for (Deal *j = i->Next; j; j = j->Next)
             if (i->Summ < j->Summ)
                 swap(*i, *j);
+    return 0;
 }
 
 int DealList::search(string date)

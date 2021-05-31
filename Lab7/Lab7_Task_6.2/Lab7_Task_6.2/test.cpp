@@ -90,6 +90,8 @@ int main()
     assert(dcBase.getDiscount(01) == 1);
     assert(2e-10 > dcBase.getDiscount(111111) - 2.34);
     assert(dcBase.sortList() == 0);
+    assert(dcBase.search(2) == 0);
+    assert(dcBase.search(1000) == 1);
     
     t.GoodsVariety = t2.GoodsVariety = 1;
     t.Summ = 1;
@@ -110,6 +112,7 @@ int main()
     assert(t.Summ == 2);
     assert(dBase.search("123") == 1);
     assert(dBase.search("5.5.1991") == 0);
+    assert(dBase.sortList() == 0);
     
     assert(dBase.printBase() == 0);
     assert(dcBase.printBase() == 0);
@@ -142,11 +145,12 @@ int main()
     
     assert(dBase2.search("123") == 1);
     assert(dBase2.printBase() == 1);
+    assert(dBase2.sortList() == 1);
     
     assert(dcBase2.printBase() == 1);
     assert(dcBase2.getDiscount(01) == 1);
     assert(dcBase2.sortList() == 1);
-
+    assert(dcBase2.search(1000) == 1);
     
     return 0;
 }
